@@ -1,0 +1,216 @@
+$env:HELISA_API_KEY="KEY"
+$ENV:HELISA_CLIENT_ID="ID"
+
+****************************************************************DOCUMENTACIÓN********************************************************************************************************
+https://webconektaorquestador.helisa.com/v3/api-docs/legacy-api
+
+
+****************************************************************FRAGMENTOS DOCUMENTACIÓN*****************************************************************************************************
+"/KansasWS/set/document": {
+"post": {
+"tags": [
+"Conekta WS — Escritura (SET)"
+],
+"summary": "Inserción de documentos",
+"description": "Registra un comprobante contable (factura, nota crédito, recibo, etc.) en Helisa.\n\n**Payload HMAC:** el string completo del parámetro `json`\n\n**Campos del JSON:**\n| Campo | Tipo | Descripción |\n|-------|------|-------------|\n| `prefix` | string | Prefijo del documento (ej: `\"FV\"`) |\n| `number` | int | Número del comprobante |\n| `date` | object | `{\"day\":5,\"month\":3,\"year\":2024}` |\n| `account` | string | Cuenta contable principal |\n| `nit` | string | NIT del tercero |\n| `items` | array | Líneas del comprobante |\n",
+"operationId": "setDocument",
+"parameters": [
+{
+"name": "json",
+"in": "query",
+"description": "Datos del documento contable serializados como JSON. Ver descripción del endpoint para la estructura.",
+"required": true,
+"schema": {
+"type": "string"
+}
+},
+{
+"name": "id",
+"in": "query",
+"description": "Id de conexion entregado por Helisa",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int64"
+}
+},
+{
+"name": "sign",
+"in": "query",
+"description": "Firma HMAC-SHA256. **Payload:** el string del campo `json`",
+"required": true,
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "Documento registrado correctamente (body vacío)",
+"content": {
+"*/*": {
+"schema": {
+"type": "object"
+}
+}
+}
+},
+"202": {
+"description": "Documento ya existe",
+"content": {
+"application/json": {
+"example": {
+"error": {
+"code": 5,
+"message": "Already exists"
+}
+}
+}
+}
+},
+"401": {
+"description": "Firma HMAC inválida",
+"content": {
+"application/json": {
+"example": {
+"error": {
+"code": "INVALID_SIGNATURE",
+"message": "Firma HMAC invalida o cliente no registrado"
+}
+}
+}
+}
+},
+"409": {
+"description": "Error de negocio / validación",
+"content": {
+"application/json": {}
+}
+},
+"423": {
+"description": "Archivo de parámetros bloqueado",
+"content": {
+"*/*": {
+"schema": {
+"type": "object"
+}
+}
+}
+}
+},
+"security": [
+{
+"legacy-sign": []
+}
+]
+}
+},
+
+
+**********************************************************************************************************************************************************************
+
+"/KansasWS/get/thirdParty2_0": {
+"post": {
+"tags": [
+"Conekta WS — Consultas (GET)"
+],
+"summary": "Lectura de cartilla de terceros, clientes y proveedores",
+"description": "Retorna la información de un tercero (cliente, proveedor, empleado) identificado por su NIT/cédula.\n\n**Payload HMAC:** `year + \"|\" + identity + \"|\" + date`\n",
+"operationId": "getThirdParty2_0",
+"parameters": [
+{
+"name": "year",
+"in": "query",
+"description": "Año de referencia",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "identity",
+"in": "query",
+"description": "NIT o identificación del tercero a consultar",
+"required": true,
+"schema": {
+"type": "string"
+}
+},
+{
+"name": "id",
+"in": "query",
+"description": "Id de conexion entregado por Helisa",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int64"
+}
+},
+{
+"name": "date",
+"in": "query",
+"description": "Timestamp de referencia en epoch millis",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int64"
+}
+},
+{
+"name": "sign",
+"in": "query",
+"description": "Firma HMAC-SHA256. **Payload:** `year + \"|\" + identity + \"|\" + date`",
+"required": true,
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "Datos del tercero",
+"content": {
+"application/json": {}
+}
+},
+"204": {
+"description": "Tercero no encontrado",
+"content": {
+"application/json": {
+"schema": {
+"type": "string"
+}
+}
+}
+},
+"401": {
+"description": "Firma HMAC inválida",
+"content": {
+"application/json": {}
+}
+},
+"409": {
+"description": "Cliente no registrado",
+"content": {
+"application/json": {}
+}
+},
+"423": {
+"description": "Archivo de parámetros bloqueado",
+"content": {
+"application/json": {
+"schema": {
+"type": "string"
+}
+}
+}
+}
+},
+"security": [
+{
+"legacy-sign": []
+}
+]
+}
+},
