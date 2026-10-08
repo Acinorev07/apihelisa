@@ -4,6 +4,9 @@ $ENV:HELISA_CLIENT_ID="ID"
 ****************************************************************DOCUMENTACIÓN********************************************************************************************************
 https://webconektaorquestador.helisa.com/v3/api-docs/legacy-api
 
+****************************************************************FORMATO DE LA FECHA*********************************************************************************
+                        
+                                   dd/mm/yyyy
 
 ****************************************************************FRAGMENTOS DOCUMENTACIÓN*****************************************************************************************************
 "/KansasWS/set/document": {
@@ -202,6 +205,94 @@ https://webconektaorquestador.helisa.com/v3/api-docs/legacy-api
 "application/json": {
 "schema": {
 "type": "string"
+}
+}
+}
+}
+},
+"security": [
+{
+"legacy-sign": []
+}
+]
+}
+},
+
+
+
+"/KansasWS/set/thirdParty2_0": {
+"post": {
+"tags": [
+"Conekta WS — Escritura (SET)"
+],
+"summary": "Inserción y actualización de terceros",
+"description": "Crea o actualiza un tercero (cliente, proveedor, empleado) en el maestro de Helisa.\nSi el NIT ya existe, actualiza los datos.\n\n**Payload HMAC:** el string completo del parámetro `json`\n\n**Campos del JSON:**\n| Campo | Tipo | Descripción |\n|-------|------|-------------|\n| `nit` | string | NIT o cédula del tercero |\n| `name` | string | Nombre o razón social |\n| `address` | string | Dirección |\n| `city` | string | Ciudad |\n| `department` | string | Departamento |\n| `phone` | string | Teléfono |\n| `email` | string | Correo electrónico |\n| `nature` | string | Naturaleza: `\"J\"` = Jurídica, `\"N\"` = Natural |\n",
+"operationId": "setThirdParty2_0",
+"parameters": [
+{
+"name": "json",
+"in": "query",
+"description": "Datos del tercero serializados como JSON",
+"required": true,
+"schema": {
+"type": "string"
+}
+},
+{
+"name": "id",
+"in": "query",
+"description": "Id de conexion entregado por Helisa",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int64"
+}
+},
+{
+"name": "sign",
+"in": "query",
+"description": "Firma HMAC-SHA256. **Payload:** el string del campo `json`",
+"required": true,
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "Tercero registrado/actualizado correctamente",
+"content": {
+"*/*": {
+"schema": {
+"type": "object"
+}
+}
+}
+},
+"202": {
+"description": "Tercero ya existe sin cambios",
+"content": {
+"application/json": {}
+}
+},
+"401": {
+"description": "Firma HMAC inválida",
+"content": {
+"application/json": {}
+}
+},
+"409": {
+"description": "Error de validación del JSON",
+"content": {
+"application/json": {}
+}
+},
+"423": {
+"description": "Archivo de parámetros bloqueado",
+"content": {
+"*/*": {
+"schema": {
+"type": "object"
 }
 }
 }

@@ -1,8 +1,13 @@
+# apihelisa/hooks/date.py
 import time as t
+from datetime import datetime
 
 
-def dateMillisec():
+def dateMillisec(fecha=None):
 
-    date = int(t.time() * 1000)
+    if fecha is None or fecha == "":
+        return int(t.time() * 1000)
 
-    return date
+    fecha_obj = datetime.strptime(fecha, "%d-%m-%Y")
+
+    return int(fecha_obj.timestamp() * 1000)

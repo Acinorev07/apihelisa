@@ -4,6 +4,8 @@ import hmac
 import hashlib
 import requests
 
+import generar_firma
+
 
 def generar_firma(key, payload):
     clave = bytes.fromhex(key)
