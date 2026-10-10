@@ -2,7 +2,7 @@ from repositorio.helisa import post
 from repositorio.helisa import get
 from hooks.generarFirma import generar_firma
 import os 
-
+from dotenv import load_dotenv
 
 
 def GET(url):
@@ -25,8 +25,13 @@ def GET(url):
 
 def POST(url, json_data):
 
+
+
     try:
 
+        # Busca el archivo .env desde la raíz del proyecto
+        load_dotenv()  
+        
         key = os.environ["HELISA_API_KEY"]
         client_id = os.environ["HELISA_CLIENT_ID"]
 

@@ -36,7 +36,7 @@ def main():
                 menu_helisa()
 
             elif opcion == 2:
-                print("\nQ10 todavía no está implementado.")
+                print("\nQ10 todavía no está i1mplementado.")
                 input("\nPresiona ENTER para continuar...")
                   
             elif opcion == 3:

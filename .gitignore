@@ -1,0 +1,17 @@
+# Archivos compilados y temporales de Python
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales
+.venv/
+venv/
+
+# Variables de entorno y credenciales
+.env
+.env.*
+
+# Permitir plantillas de variables de entorno sin secretos
+!.env.example
+
+# Archivos de configuración local
+.vscode/

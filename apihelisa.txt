@@ -305,3 +305,104 @@ https://webconektaorquestador.helisa.com/v3/api-docs/legacy-api
 ]
 }
 },
+
+
+"/KansasWS/set/document": {
+"post": {
+"tags": [
+"Conekta WS — Escritura (SET)"
+],
+"summary": "Inserción de documentos",
+"description": "Registra un comprobante contable (factura, nota crédito, recibo, etc.) en Helisa.\n\n**Payload HMAC:** el string completo del parámetro `json`\n\n**Campos del JSON:**\n| Campo | Tipo | Descripción |\n|-------|------|-------------|\n| `prefix` | string | Prefijo del documento (ej: `\"FV\"`) |\n| `number` | int | Número del comprobante |\n| `date` | object | `{\"day\":5,\"month\":3,\"year\":2024}` |\n| `account` | string | Cuenta contable principal |\n| `nit` | string | NIT del tercero |\n| `items` | array | Líneas del comprobante |\n",
+"operationId": "setDocument",
+"parameters": [
+{
+"name": "json",
+"in": "query",
+"description": "Datos del documento contable serializados como JSON. Ver descripción del endpoint para la estructura.",
+"required": true,
+"schema": {
+"type": "string"
+}
+},
+{
+"name": "id",
+"in": "query",
+"description": "Id de conexion entregado por Helisa",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int64"
+}
+},
+{
+"name": "sign",
+"in": "query",
+"description": "Firma HMAC-SHA256. **Payload:** el string del campo `json`",
+"required": true,
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "Documento registrado correctamente (body vacío)",
+"content": {
+"*/*": {
+"schema": {
+"type": "object"
+}
+}
+}
+},
+"202": {
+"description": "Documento ya existe",
+"content": {
+"application/json": {
+"example": {
+"error": {
+"code": 5,
+"message": "Already exists"
+}
+}
+}
+}
+},
+"401": {
+"description": "Firma HMAC inválida",
+"content": {
+"application/json": {
+"example": {
+"error": {
+"code": "INVALID_SIGNATURE",
+"message": "Firma HMAC invalida o cliente no registrado"
+}
+}
+}
+}
+},
+"409": {
+"description": "Error de negocio / validación",
+"content": {
+"application/json": {}
+}
+},
+"423": {
+"description": "Archivo de parámetros bloqueado",
+"content": {
+"*/*": {
+"schema": {
+"type": "object"
+}
+}
+}
+}
+},
+"security": [
+{
+"legacy-sign": []
+}
+]
+}
+},

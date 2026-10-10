@@ -1,0 +1,758 @@
+
+Chat, hice un push del proyecto a github desde mi pc en casa, pero ahora necesito hacer un merge desde github con el proyecto que tengo en el pc de trabajo, que ya habia clonado antes, para mostrar la primera version, pero este ya es otro commit
+Sí. En tu caso no necesitas volver a clonar el proyecto. Como el proyecto del PC de trabajo ya está clonado, lo que necesitas es traer los cambios que hiciste y subiste desde el PC de casa.
+
+La situación sería:
+
+PC CASA
+   │
+   │ git push
+   ▼
+GitHub
+   │
+   │ git pull / fetch + merge
+   ▼
+PC TRABAJO
+Pero hay un detalle importante: dices que en el PC de trabajo ya tienes otro commit. Entonces primero debemos saber si ese PC tiene cambios locales que todavía no están en GitHub.
+
+1. En el PC de trabajo
+Abre PowerShell dentro de la carpeta del proyecto y ejecuta:
+
+git status
+
+Luego:
+
+git log --oneline --graph --decorate --all -10
+
+Eso nos permitirá ver algo parecido a:
+
+* abc1234 (HEAD -> main) cambio hecho en PC trabajo
+|
+* 789abcd primera versión
+mientras que GitHub podría tener:
+
+* def5678 (origin/main) cambio hecho en PC casa
+|
+* 789abcd primera versión
+En ese caso tenemos dos ramas de historial que parten del mismo commit, y ahí sí tiene sentido hacer un merge.
+
+2. Antes de hacer el merge
+Ejecuta también:
+
+git fetch origin
+
+Esto no modifica tus archivos de trabajo. Simplemente trae la información más reciente de GitHub.
+
+Después:
+
+git status
+
+y:
+
+git log --oneline --graph --decorate --all -10
+
+3. Si quieres conservar lo que tienes en el PC de trabajo y además traer lo de GitHub
+Entonces normalmente sería:
+
+git merge origin/main
+
+Si tu rama principal se llama master, sería:
+
+git merge origin/master
+
+Si Git encuentra conflictos, te los mostrará y los resolvemos uno por uno.
+
+Pero todavía no hagas el merge a ciegas. Como estás trabajando precisamente con una primera versión que quieres mostrar, es mejor que veamos primero cómo están los dos historiales.
+
+Pásame la salida de estos tres comandos ejecutados en el PC de trabajo:
+
+git status
+
+git branch -a
+
+git log --oneline --graph --decorate --all -10
+
+Con eso te digo exactamente si debes hacer pull, merge, rebase o simplemente mover la rama, sin arriesgar el commit que tienes actualmente en el PC de trabajo.
+
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   api/helisa/__pycache__/route.cpython-314.pyc
+        modified:   apihelisa.txt
+        modified:   hooks/__pycache__/date.cpython-314.pyc
+        modified:   hooks/__pycache__/generarFirma.cpython-314.pyc
+        modified:   hooks/__pycache__/limpiarPantalla.cpython-314.pyc
+        modified:   iu/helisa/__pycache__/menuHelisa.cpython-314.pyc
+        modified:   repositorio/__pycache__/helisa.cpython-314.pyc
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git branch -a
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git log --oneline --graph --decorate --all -10
+* fe2418d (HEAD -> main, origin/main, origin/HEAD) Primer commit, damos inicio al consumi de la api de helisa y Q10
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa>
+…
+Perfecto. Con esa información ya se ve claramente qué está pasando.
+
+Actualmente tu PC de trabajo está así:
+
+PC TRABAJO                         GitHub
+──────────                         ──────
+main ── fe2418d  ──────────────── origin/main
+          │
+          └─ "Primer commit..."
+Es decir, el PC de trabajo todavía no conoce el commit nuevo que hiciste desde el PC de casa.
+
+Además tienes modificaciones locales:
+
+api/helisa/__pycache__/...
+hooks/__pycache__/...
+iu/helisa/__pycache__/...
+repositorio/__pycache__/...
+apihelisa.txt
+Aquí hay algo importante: no hagamos todavía un git pull, porque primero debemos proteger esas modificaciones locales, especialmente apihelisa.txt.
+
+Lo que te recomiendo
+Primero hagamos una copia temporal de esos cambios con stash.
+
+Ejecuta:
+
+git stash push -m "Cambios PC trabajo antes de sincronizar"
+
+Luego:
+
+git status
+
+Deberías quedar aproximadamente así:
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+Después traemos la información nueva de GitHub:
+
+git fetch origin
+
+Y ahora mira nuevamente el historial:
+
+git log --oneline --graph --decorate --all -10
+
+Probablemente ahora aparecerá algo como:
+
+* 8abc123 (origin/main) cambios hechos desde PC casa
+* fe2418d (HEAD -> main) Primer commit...
+Y aquí está la parte interesante
+Si tu commit de casa simplemente continúa desde fe2418d, no necesitas hacer un merge manual.
+
+Podríamos hacer:
+
+git pull
+
+y Git avanzará tu main hasta el commit nuevo.
+
+Pero si resulta que en el PC de trabajo también hiciste un commit diferente, veremos algo como:
+
+          B  ← PC trabajo
+         /
+A
+         \
+          C  ← PC casa / GitHub
+Ahí sí tendremos dos líneas de desarrollo y necesitaremos:
+
+git merge origin/main
+
+Por eso quiero que hagamos primero:
+
+git stash push -m "Cambios PC trabajo antes de sincronizar"
+git status
+git fetch origin
+git log --oneline --graph --decorate --all -10
+
+Pásame esa última salida y te digo exactamente cuál es el siguiente comando. Así no arriesgamos ni el proyecto que tienes en el PC de trabajo ni el nuevo commit que subiste desde casa.
+
+
+
+
+
+
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git stash push -m "Cambios PC trabajo antes de sincronizar"
+Saved working directory and index state On main: Cambios PC trabajo antes de sincronizar
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git fetch origin
+remote: Enumerating objects: 24, done.
+remote: Counting objects: 100% (24/24), done.
+remote: Compressing objects: 100% (9/9), done.
+remote: Total 13 (delta 3), reused 13 (delta 3), pack-reused 0 (from 0)
+Unpacking objects: 100% (13/13), 6.11 KiB | 30.00 KiB/s, done.
+From https://github.com/Acinorev07/apihelisa
+   fe2418d..3f61a51  main       -> origin/main
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git status
+On branch main
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git log --oneline --graph --decorate --all -10
+*   4af257e (refs/stash) On main: Cambios PC trabajo antes de sincronizar
+|\  
+| * 172d54c index on main: fe2418d Primer commit, damos inicio al consumi de la api de helisa y Q10
+|/  
+| * 3f61a51 (origin/main, origin/HEAD) Agregamos la funcion 3 al menu de helisa, que nos permite agregar un documento a la base de datos, con el objetivo de hacer pruebas
+|/  
+* fe2418d (HEAD -> main) Primer commit, damos inicio al consumi de la api de helisa y Q10
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa>
+…
+¡Perfecto! Ahora sí tenemos el panorama completo, y es mucho más sencillo de lo que parecía.
+
+Tu historial quedó así:
+
+fe2418d  ← Primer commit
+   │
+   └── 3f61a51  ← nuevo commit que hiciste en PC CASA
+                    ↑
+                GitHub
+Y tu PC de trabajo está aquí:
+
+fe2418d  ← HEAD de tu PC TRABAJO
+Por eso Git te dice:
+
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+
+¿Qué significa "fast-forward"?
+Significa que no hay ningún conflicto ni dos ramas diferentes que unir.
+
+Tu PC de trabajo simplemente está un commit atrasado:
+
+PC trabajo:
+
+fe2418d
+   ↑
+  main
+
+
+GitHub:
+
+fe2418d
+   │
+   ▼
+3f61a51
+   ↑
+origin/main
+Por lo tanto, NO necesitas hacer git merge.
+
+Solo necesitas traer ese commit:
+
+git pull
+
+Git debería hacer algo parecido a:
+
+Updating fe2418d..3f61a51
+Fast-forward
+ ...
+Después comprueba
+Ejecuta:
+
+git status
+
+Debería decir:
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+Y:
+
+git log --oneline --graph --decorate --all -10
+
+Deberías tener:
+
+* 3f61a51 (HEAD -> main, origin/main, origin/HEAD) Agregamos la funcion 3 al menu de helisa...
+* fe2418d Primer commit...
+⚠️ Pero nos falta recuperar tus cambios del PC de trabajo
+Antes hicimos:
+
+git stash push -m "Cambios PC trabajo antes de sincronizar"
+
+Así que tus modificaciones no se perdieron. Están guardadas en:
+
+stash@{0}
+Después de hacer el pull, no ejecutes todavía git stash pop sin mirar primero.
+
+Primero:
+
+git pull
+
+y me pasas el resultado.
+
+Luego vemos qué contiene el stash y decidimos si:
+
+git stash pop
+
+es seguro.
+
+En particular, apihelisa.txt podría tener cambios que quieras conservar, mientras que los __pycache__/*.pyc normalmente no deberían estar versionados en Git. Eso lo podemos limpiar después con un .gitignore.
+
+Así que ahora mismo, el único comando que necesitas ejecutar es:
+
+git pull
+
+No hagas merge; en este caso Git ya nos está diciendo que puede hacer un fast-forward.
+
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git pull
+Updating fe2418d..3f61a51
+Fast-forward
+ apiTerceros.py                                   |   2 +
+ apihelisa.txt                                    |  91 +++++++++++++
+ hooks/__pycache__/date.cpython-314.pyc           | Bin 394 -> 663 bytes
+ hooks/date.py                                    |  11 +-
+ iu/helisa/__pycache__/menuHelisa.cpython-314.pyc | Bin 2762 -> 4560 bytes
+ iu/helisa/menuHelisa.py                          | 157 ++++++++++++++++++++++-
+ 6 files changed, 252 insertions(+), 9 deletions(-)
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa>
+¡Perfecto! 🎉 El pull salió exactamente como esperábamos.
+
+Ahora tu PC de trabajo ya tiene el commit de GitHub:
+
+fe2418d
+   │
+   ▼
+3f61a51  ← ahora estás aquí
+Y Git hizo un Fast-forward, así que no hubo ningún merge conflictivo.
+
+El mensaje:
+
+Updating fe2418d..3f61a51
+Fast-forward
+confirma que todo salió bien.
+
+Ahora tenemos que recuperar tus cambios anteriores
+Recuerda que antes hicimos:
+
+git stash push -m "Cambios PC trabajo antes de sincronizar"
+
+Por eso tus modificaciones originales del PC de trabajo siguen guardadas.
+
+Primero mira qué tienes en el stash:
+
+git stash list
+
+Deberías ver algo parecido a:
+
+stash@{0}: On main: Cambios PC trabajo antes de sincronizar
+Luego podemos inspeccionarlo sin aplicarlo:
+
+git stash show --stat stash@{0}
+
+Esto es importante porque ahora el commit 3f61a51 también modificó apihelisa.txt y algunos .pyc. Por tanto, quiero que veamos primero qué había guardado tu stash antes de hacer:
+
+git stash pop
+
+No queremos sobrescribir accidentalmente lo que acabas de traer de GitHub.
+
+Una cosa interesante que ya podemos corregir
+Veo que GitHub está guardando archivos como:
+
+hooks/__pycache__/date.cpython-314.pyc
+iu/helisa/__pycache__/menuHelisa.cpython-314.pyc
+Eso no debería estar en el repositorio. Son archivos compilados que Python genera automáticamente.
+
+Más adelante podemos agregar:
+
+__pycache__/
+*.pyc
+a tu .gitignore y limpiar esos archivos del repositorio. Pero no hagámoslo todavía hasta recuperar tus cambios del PC de trabajo.
+
+Por ahora ejecuta:
+
+git stash list
+
+y luego:
+
+git stash show --stat stash@{0}
+
+Pásame esas dos salidas y seguimos desde ahí.
+
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git stash list
+stash@{0}: On main: Cambios PC trabajo antes de sincronizar
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git stash show --stat stash@{0}
+Too many revisions specified: 'stash@' 'MAA=' 'xml' 'text'
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa>
+Sí, eso no es un problema con Git. 👍
+
+Lo que pasó es que PowerShell está interpretando los caracteres {} de stash@{0} antes de que Git reciba el argumento. Por eso Git terminó recibiendo algo extraño y muestra:
+
+Too many revisions specified: 'stash@' 'MAA=' 'xml' 'text'
+Tu stash sigue perfectamente guardado:
+
+stash@{0}: On main: Cambios PC trabajo antes de sincronizar
+1. Vamos a consultar el stash correctamente
+En PowerShell, pon el identificador entre comillas:
+
+git stash show --stat "stash@{0}"
+
+Eso debería mostrar algo parecido a:
+
+ api/helisa/__pycache__/route.cpython-314.pyc | ...
+ apihelisa.txt                                | ...
+ hooks/__pycache__/date.cpython-314.pyc       | ...
+ ...
+2. También podemos ver exactamente qué cambios contiene
+Si queremos revisar las diferencias:
+
+git stash show -p "stash@{0}"
+
+Pero por ahora no hagas stash pop.
+
+Primero ejecuta:
+
+git stash show --stat "stash@{0}"
+
+y pásame el resultado.
+
+Después decidimos qué hacer con esos cambios. Mi sospecha es que tendremos que recuperar apihelisa.txt, mientras que los cambios de __pycache__ probablemente podamos descartarlos y posteriormente sacar esos archivos del control de versiones con .gitignore.
+
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git stash show --stat "stash@{0}"
+ api/helisa/__pycache__/route.cpython-314.pyc      | Bin 1518 -> 1522 bytes
+ apihelisa.txt                                     |   2 +-
+ hooks/__pycache__/date.cpython-314.pyc            | Bin 394 -> 398 bytes
+ hooks/__pycache__/generarFirma.cpython-314.pyc    | Bin 617 -> 621 bytes
+ hooks/__pycache__/limpiarPantalla.cpython-314.pyc | Bin 525 -> 529 bytes
+ iu/helisa/__pycache__/menuHelisa.cpython-314.pyc  | Bin 2762 -> 2766 bytes
+ repositorio/__pycache__/helisa.cpython-314.pyc    | Bin 581 -> 585 bytes
+ 7 files changed, 1 insertion(+), 1 deletion(-)
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa>
+Perfecto. Ahora ya sabemos exactamente qué contiene el stash.
+
+Lo importante es esto:
+
+apihelisa.txt | 2 +-
+Es decir, solo tienes un cambio real de código/configuración en apihelisa.txt:
+
+1 insertion(+)
+1 deletion(-)
+Los otros 6 archivos son .pyc, que son archivos compilados automáticamente por Python:
+
+__pycache__/
+*.pyc
+Esos no nos interesa recuperarlos.
+
+Lo que yo haría
+Como ya trajimos correctamente el commit de casa:
+
+fe2418d
+   │
+   ▼
+3f61a51  ← PC casa + GitHub + PC trabajo
+queremos conservar solamente tu modificación de apihelisa.txt que estaba en el PC de trabajo.
+
+Primero podemos ver exactamente qué cambió:
+
+git diff "stash@{0}" -- apihelisa.txt
+
+Eso nos mostrará algo como:
+
+- algo anterior
++ algo que tenías en el PC de trabajo
+No modifica nada.
+
+Después, si vemos que ese cambio sí lo quieres conservar, podemos recuperar únicamente ese archivo:
+
+git checkout "stash@{0}" -- apihelisa.txt
+
+Esto recupera solamente apihelisa.txt desde el stash y no toca los .pyc.
+
+Luego:
+
+git status
+
+y tendremos algo parecido a:
+
+Changes not staged for commit:
+
+    modified: apihelisa.txt
+Y después hacemos una limpieza importante
+Como acabamos de comprobar que Git está siguiendo varios __pycache__ y .pyc, sería bueno corregir el repositorio:
+
+__pycache__/
+*.pyc
+Pero primero recuperemos apihelisa.txt y revisemos su contenido, porque no quiero que accidentalmente sobrescribamos una modificación que acabas de traer desde GitHub.
+
+Así que ejecuta solamente:
+
+git diff "stash@{0}" -- apihelisa.txt
+
+Pásame lo que salga y te explico exactamente qué línea estás recuperando antes de modificar nada.
+
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git diff "stash@{0}" -- apihelisa.txt
+diff --git a/apihelisa.txt b/apihelisa.txt
+index 0e9df21..2ded9d1 100644
+--- a/apihelisa.txt
++++ b/apihelisa.txt
+@@ -2,8 +2,11 @@ $env:HELISA_API_KEY="KEY"
+ $ENV:HELISA_CLIENT_ID="ID"
+ 
+ ****************************************************************DOCUMENTACIÓN********************************************************************************************************
++https://webconektaorquestador.helisa.com/v3/api-docs/legacy-api
+ 
+-
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa>
+Perfecto. Ahora está clarísimo. 👍
+
+Tu stash tiene una sola modificación útil en apihelisa.txt: agregaste esta URL:
+
+https://webconektaorquestador.helisa.com/v3/api-docs/legacy-api
+Y los otros cambios eran únicamente archivos .pyc.
+
+Por tanto, sí podemos recuperar solo esa línea sin traer ninguno de los .pyc.
+
+1. Recuperar apihelisa.txt
+Ejecuta:
+
+git checkout "stash@{0}" -- apihelisa.txt
+
+Después:
+
+git status
+
+Deberías ver:
+
+Changes not staged for commit:
+    modified: apihelisa.txt
+2. Comprueba el cambio
+Puedes ejecutar:
+
+git diff -- apihelisa.txt
+
+Y deberías ver nuevamente:
+
++https://webconektaorquestador.helisa.com/v3/api-docs/legacy-api
+3. ¿Y el stash?
+No lo borres todavía.
+
+Una vez comprobemos que apihelisa.txt quedó correctamente recuperado, podemos eliminar el stash:
+
+git stash drop "stash@{0}"
+
+Eso eliminará la copia temporal que ya no necesitamos.
+
+Y hay algo que te recomiendo hacer después
+Ahora mismo tu repositorio tiene archivos que no deberían estar bajo Git:
+
+api/helisa/__pycache__/
+hooks/__pycache__/
+iu/helisa/__pycache__/
+repositorio/__pycache__/
+*.pyc
+Podemos crear/corregir tu .gitignore:
+
+__pycache__/
+*.pyc
+y posteriormente sacar esos archivos del repositorio sin borrarlos de tu PC.
+
+Eso te evitará que cada vez que ejecutes Python aparezcan cambios como:
+
+modified: hooks/__pycache__/date.cpython-314.pyc
+que realmente no representan cambios en tu código fuente.
+
+Pero hagámoslo después de terminar esta sincronización.
+
+Por ahora ejecuta:
+
+git checkout "stash@{0}" -- apihelisa.txt
+git status
+
+y con eso dejamos recuperado exactamente el cambio que tenías en el PC de trabajo.
+
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git checkout "stash@{0}" -- apihelisa.txt
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   apihelisa.txt
+
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa> git stash drop "stash@{0}"
+Dropped stash@{0} (4af257e5926758ce7c8a6b5ca387ffe85db2e68e)
+PS C:\Users\AUXCONTABLE\Desktop\apihelisa>
+¡Excelente! Ya hiciste correctamente la parte delicada. 👌
+
+Ahora tu situación es:
+
+GitHub / origin/main
+        │
+        ▼
+   3f61a51
+        │
+        ▼
+PC TRABAJO
+   main → 3f61a51
+        │
+        └── modificación local:
+            apihelisa.txt
+Y el stash ya fue eliminado porque ya recuperamos el único cambio que nos interesaba.
+
+¿Por qué aparece "Changes to be committed"?
+Esto es importante:
+
+Changes to be committed:
+    modified: apihelisa.txt
+Aunque nosotros usamos:
+
+git checkout "stash@{0}" -- apihelisa.txt
+
+Git recuperó el archivo directamente en el área de preparación (staging).
+
+Eso significa que todavía no has creado un commit. Y está bien.
+
+Puedes comprobar exactamente qué vas a guardar con:
+
+git diff --cached
+
+Deberías ver solamente:
+
++https://webconektaorquestador.helisa.com/v3/api-docs/legacy-api
+Ahora tienes dos opciones
+Opción A — Quieres conservar esa URL en el proyecto
+Entonces:
+
+git commit -m "Agrega documentación de API de Helisa"
+
+Y después:
+
+git push origin main
+
+Así quedaría:
+
+PC casa
+     │
+     └── 3f61a51
+          │
+          ▼
+       GitHub
+          │
+          ▼
+     PC trabajo
+          │
+          └── nuevo commit
+              "Agrega documentación de API de Helisa"
+Opción B — Esa URL era algo temporal y no quieres subirla
+Entonces simplemente:
+
+git restore --staged apihelisa.txt
+git restore apihelisa.txt
+
+y tu PC quedaría exactamente igual que GitHub.
+
+⚠️ Un detalle de seguridad importante
+Veo que en tu apihelisa.txt tienes líneas del tipo:
+
+$env:HELISA_API_KEY="KEY"
+$ENV:HELISA_CLIENT_ID="ID"
+Si en tu archivo real esas palabras son las credenciales reales y no marcadores como KEY e ID, no deberíamos hacer git push de ese archivo. Las credenciales de API no deberían quedar en GitHub, aunque el repositorio sea privado.
+
+Lo ideal sería después pasar esas variables a un archivo .env ignorado por Git.
+
+Por lo demás, la sincronización PC casa → GitHub → PC trabajo ya quedó realizada correctamente. El commit 3f61a51 está ahora en tu PC de trabajo y no hubo ningún conflicto.
+
+
+
+****************************************************************************************************************************************************************************************************************************************************
+como creo el archivo .gitignore?
+¡Claro! Vamos a crear el archivo .gitignore en tu proyecto apihelisa, desde PowerShell en Windows. Su función es indicarle a Git qué archivos o carpetas debe ignorar, por ejemplo, los archivos temporales que genera Python.
+
+1. Crear el archivo .gitignore
+Actualmente estás trabajando en:
+
+C:\Users\AUXCONTABLE\Desktop\apihelisa
+
+En esa misma terminal, ejecuta:
+
+New-Item .gitignore -ItemType File
+
+Si el archivo ya existe, PowerShell te avisará. En ese caso, no lo sobrescribas: podemos editarlo.
+
+2. Agregar las reglas de Python
+Abre el proyecto en Visual Studio Code:
+
+code .
+
+En el explorador de archivos de VS Code, busca .gitignore en la raíz del proyecto y escribe estas reglas:
+
+Archivos compilados y temporales de Python
+pycache/
+*.py[cod]
+
+Entornos virtuales
+.venv/
+venv/
+
+Variables de entorno y credenciales
+.env
+.env.*
+
+Permitir plantillas de variables de entorno sin secretos
+!.env.example
+
+Archivos de configuración local
+.vscode/
+
+Guarda el archivo con Ctrl + S.
+
+¿Qué estamos ignorando?
+
+__pycache__/ y *.py[cod]: archivos generados automáticamente por Python.
+
+.venv/ y venv/: entornos virtuales que puedes reconstruir en cada computador.
+
+.env y .env.*: archivos que podrían contener tus claves de Helisa y otros secretos.
+
+.vscode/: configuraciones locales de Visual Studio Code.
+
+3. Importante: los archivos que Git ya conoce
+Aquí hay un detalle de Git que explica por qué esto no basta por sí solo.
+
+Tu repositorio ya tiene archivos como:
+
+hooks/__pycache__/date.cpython-314.pyc
+iu/helisa/__pycache__/menuHelisa.cpython-314.pyc
+El .gitignore no deja de rastrear automáticamente los archivos que ya están versionados. Debemos retirarlos del índice de Git sin borrarlos de tu computador.
+
+Primero, revisa que el .gitignore esté guardado y ejecuta:
+
+git rm -r --cached -- ':(glob)**/__pycache__'
+
+Después:
+
+git rm --cached -- '*.pyc'
+
+Si el segundo comando no encuentra archivos, no pasa nada; puede que ya hayan quedado cubiertos por el primer comando o que no haya coincidencias en el índice.
+
+El parámetro --cached es importante: retira los archivos del seguimiento de Git, pero conserva tus archivos locales.
+
+4. Comprobar los cambios
+Ejecuta:
+
+git status
+
+Deberías ver el .gitignore como archivo nuevo y los archivos .pyc preparados para dejar de estar versionados.
+
+Cuando hayas revisado el resultado, puedes guardar los cambios:
+
+git add .gitignore
+git commit -m "Agrega gitignore y excluye archivos temporales de Python"
+git push origin main
+
+Así, tanto tu PC de casa como el de trabajo dejarán de proponer esos archivos temporales como cambios en futuros commits.
+
+Una recomendación adicional: como tu proyecto usa credenciales de Helisa, asegúrate de no subir claves reales en apihelisa.txt. Agregar .env al .gitignore protege ese archivo, pero no protege automáticamente las credenciales que ya estén escritas en otros archivos versionados.
