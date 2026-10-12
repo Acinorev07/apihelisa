@@ -1,0 +1,20 @@
+
+{
+  "seguro_estudiantil": {
+    "tipo": "pasivo",
+    "cuenta_contable": "28150603"
+  },
+  "matricula_tecnologia": {
+    "tipo": "ingreso_diferido",
+    "cuenta_contable": "27054701",
+    "cuenta_reconocimiento_ingreso": "41600502"
+  },
+  "curso_corto": {
+    "tipo": "ingreso",
+    "cuenta_contable": "41600502"
+  },
+  "formas_pago": {
+    "efectivo": "110505",
+    "transferencia": "11201001"
+  }
+}
