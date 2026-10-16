@@ -1,7 +1,11 @@
 from hooks.limpiarPantalla import limpiar_pantalla
 from api.helisa.route import POST
+from api.helisa.route import GET_TERCERO
 from hooks.date import dateMillisec
+from hooks.validarDi import validar_documento_tercero
 import json
+from datetime import datetime
+import time
 
 
 def menu_helisa():
@@ -39,7 +43,68 @@ def menu_helisa():
                         config["url_final"]["1"]
                     )
 
-                print("Opción 1 todavía en construcción.") 
+                
+
+                # # Epoch en milisegundos
+                # fecha_consulta = input(
+                #     "Fecha de consulta (DD-MM-YYYY, ENTER = hoy): "
+                # )
+                # # Pedir la fecha de consulta
+                fecha_consulta = input(
+                    "Fecha de consulta (DD-MM-YYYY, ENTER = hoy): "
+                ).strip()
+
+                # Interpretar la fecha
+                if fecha_consulta:
+                    try:
+                        fecha_seleccionada = datetime.strptime(
+                            fecha_consulta, "%d-%m-%Y"
+                        )
+                    except ValueError:
+                        print("Fecha inválida. Utiliza el formato DD-MM-YYYY.")
+                        raise SystemExit(1)
+                else:
+                    fecha_seleccionada = datetime.now()
+
+                # Extraer el año para consultar Helisa
+                year = fecha_seleccionada.year
+
+                print("Año de consulta:", year)
+
+
+                date = dateMillisec(fecha_consulta)
+
+                # Documento de identidad del tercero
+                di = validar_documento_tercero(
+                    "Introduce el NIT del proveedor: "
+                )
+
+                
+
+                payload = f"{year}|{di}|{date}"
+            
+                response = GET_TERCERO(
+                    url, 
+                    payload,
+                    year,
+                    di,
+                    date
+                    )
+                    
+                if response is not None:
+                        print("\nCódigo HTTP:", response.status_code)
+                        print("\nRespuesta de Helisa:")
+
+                        try:
+                            print(
+                                json.dumps(
+                                    response.json(),
+                                    indent=4,
+                                    ensure_ascii=False,
+                                )
+                            )
+                        except ValueError:
+                            print(response.text)
 
                 input("\nPresiona ENTER para continuar...")
 

@@ -4,6 +4,7 @@
 from decimal import Decimal, InvalidOperation
 
 
+
 def validar_asiento(movimientos):
     """
     Comprueba que un asiento tenga movimientos válidos
@@ -409,3 +410,11 @@ def construir_documento_helisa(
     }
 
     return documento
+
+
+# def consultar_tercero_base
+
+
+
+
+

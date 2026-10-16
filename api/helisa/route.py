@@ -56,3 +56,42 @@ def POST(url, json_data):
         print(f"\nError en la ejecución: {str(e)}")
         return None
 
+
+
+def GET_TERCERO(url, payload, year, di, date):
+
+
+
+    try:
+
+        # Busca el archivo .env desde la raíz del proyecto
+        load_dotenv()  
+        
+        key = os.environ["HELISA_API_KEY"]
+        client_id = os.environ["HELISA_CLIENT_ID"]
+
+        sign = generar_firma(
+            key,
+            payload
+        )
+        params = {
+            "year": year,
+            "identity": di,
+            "id": client_id,
+            "date": date,
+            "sign": sign
+        }
+
+        response = post(
+            url,
+            params=params
+        )
+
+       # Si Helisa devuelve un error HTTP, lo mostramos.
+        response.raise_for_status()
+
+        return response
+
+    except (KeyError, ValueError) as e:
+        print(f"Error de configuración o datos: {e}")
+        return None
