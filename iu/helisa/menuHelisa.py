@@ -1,24 +1,10 @@
 from hooks.limpiarPantalla import limpiar_pantalla
-from api.helisa.route import POST
-from api.helisa.route import GET_TERCERO
-from hooks.date import dateMillisec
-from hooks.validarDi import validar_documento_tercero
-import json
-from datetime import datetime
-import time
+from services.helisa.obtener_tercero import obtener_tercero
+from services.helisa.obtener_saldos_cuentas import obtener_saldos_cuenta
+from services.helisa.insertar_documento import insertar_documento
 
 
 def menu_helisa():
-
-
-
-    config = {
-        "url_raiz": "https://webconektaorquestador.helisa.com",
-        "url_final":{
-            "1":"/KansasWS/get/thirdParty2_0",
-            "2":"/KansasWS/summary/thirdPartyFromAccount"
-        }
-    }
 
     try:
 
@@ -37,270 +23,52 @@ def menu_helisa():
             opcion = int(input("Opcion: "))
 
             if opcion == 1:
-                limpiar_pantalla()
-                url = (
-                        config["url_raiz"] +
-                        config["url_final"]["1"]
-                    )
+                try:
+                    limpiar_pantalla()
 
-                
+                    response = obtener_tercero()
 
-                # # Epoch en milisegundos
-                # fecha_consulta = input(
-                #     "Fecha de consulta (DD-MM-YYYY, ENTER = hoy): "
-                # )
-                # # Pedir la fecha de consulta
-                fecha_consulta = input(
-                    "Fecha de consulta (DD-MM-YYYY, ENTER = hoy): "
-                ).strip()
+                    print(response)
 
-                # Interpretar la fecha
-                if fecha_consulta:
-                    try:
-                        fecha_seleccionada = datetime.strptime(
-                            fecha_consulta, "%d-%m-%Y"
-                        )
-                    except ValueError:
-                        print("Fecha inválida. Utiliza el formato DD-MM-YYYY.")
-                        raise SystemExit(1)
-                else:
-                    fecha_seleccionada = datetime.now()
-
-                # Extraer el año para consultar Helisa
-                year = fecha_seleccionada.year
-
-                print("Año de consulta:", year)
-
-
-                date = dateMillisec(fecha_consulta)
-
-                # Documento de identidad del tercero
-                di = validar_documento_tercero(
-                    "Introduce el NIT del proveedor: "
-                )
-
-                
-
-                payload = f"{year}|{di}|{date}"
-            
-                response = GET_TERCERO(
-                    url, 
-                    payload,
-                    year,
-                    di,
-                    date
-                    )
-                    
-                if response is not None:
-                        print("\nCódigo HTTP:", response.status_code)
-                        print("\nRespuesta de Helisa:")
-
-                        try:
-                            print(
-                                json.dumps(
-                                    response.json(),
-                                    indent=4,
-                                    ensure_ascii=False,
-                                )
-                            )
-                        except ValueError:
-                            print(response.text)
+                except Exception as e:
+                            print(f"\nError en la ejecución: {str(e)}")
+                            return None
 
                 input("\nPresiona ENTER para continuar...")
 
 
-            elif opcion == 2:
-                limpiar_pantalla()   
+            elif opcion == 2: 
 
-                url = (
-                    config["url_raiz"]
-                    +
-                    config["url_final"]["2"]
-                    )
+                try:
+                    limpiar_pantalla()
 
-
-                # Epoch en milisegundos
-                fecha_consulta = input(
-                    "Fecha de consulta (DD-MM-YYYY, ENTER = hoy): "
-                )
-                
-                date = dateMillisec(fecha_consulta)
-
-                # Pedir al usuario la cuenta contable a consultar
-                cuenta = input("cuenta contable: ")
-            
-                # IMPORTANTE:
-                # La firma se calcula sobre ESTE STRING exacto.
-                json_data = (
-                    '{"date":' + str(date) +
-                    ',"account":"' + cuenta + '"}'
-                )
-
-                print("Estamos en la opción 2 url: ",url)
-                print("Estamos en la opción 2 json_data: ",json_data)
-
-                response = POST(
-                    url, 
-                    json_data
-                    )
-
-                
-
-                if response is not None:
+                    response = obtener_saldos_cuenta()
 
                     print("\nCódigo:", response.status_code)
                     print("Respuesta:")
                     print(response.text)
 
-                    input("\nPresiona ENTER para continuar...")
+                except Exception as e:
+                            print(f"\nError en la ejecución: {str(e)}")
+                            return None
+                
+                
+                input("\nPresiona ENTER para continuar...")
 
             elif opcion == 3:
 
-                limpiar_pantalla()
+                try:
 
-                print("\n===== INSERTAR DOCUMENTO =====")
+                    limpiar_pantalla()
 
-                url = (
-                    config["url_raiz"]
-                    +
-                    "/KansasWS/set/document"
-                )
+                    insertar_documento()
 
-                tipo = input("Tipo de documento: ")
-                numero = input("Número del documento: ")
+                except Exception as e:
+                    print(f"\nError en la ejecución: {str(e)}")
+                    return None
 
-                fecha = input(
-                    "Fecha (DD/MM/YYYY): "
-                )
-
-                nit = input(
-                    "NIT del tercero: "
-                )
-
-                cuenta_debito = input(
-                    "Cuenta débito [41600509]: "
-                )
-
-                cuenta_credito = input(
-                    "Cuenta crédito [110505]: "
-                )
-
-                valor = int(
-                    input("Valor: ")
-                )
-
-                # --------------------------------
-                # Convertir fecha
-                # --------------------------------
-
-                dia, mes, anio = map(
-                    int,
-                    fecha.split("/")
-                )
-
-                # --------------------------------
-                # Construir documento
-                # --------------------------------
-
-                documento = {
-
-                    "document": {
-
-                        "date": {
-                            "day": dia,
-                            "month": mes,
-                            "year": anio
-                        },
-
-                        "document": {
-                            "type": tipo,
-                            "number": numero
-                        },
-
-                        "transactions": [
-
-                            {
-                                "nature": {
-                                    "tag": "D"
-                                },
-
-                                "costCenter": "061002",
-
-                                "concept": "Prueba API Helisa",
-
-                                "accountingClass": {
-                                    "value": 0
-                                },
-
-                                "value": valor,
-
-                                "idThirdParty": nit,
-
-                                "account": cuenta_debito,
-
-                                "userCode": 1,
-
-                                "taxBase": 0
-                            },
-
-                            {
-                                "nature": {
-                                    "tag": "C"
-                                },
-
-                                "costCenter": "061002",
-
-                                "concept": "Prueba API Helisa",
-
-                                "accountingClass": {
-                                    "value": 0
-                                },
-
-                                "value": valor,
-
-                                "idThirdParty": nit,
-
-                                "account": cuenta_credito,
-
-                                "userCode": 1,
-
-                                "taxBase": 0
-                            }
-                        ]
-                    }
-                }
-
-                # --------------------------------
-                # Convertir Python → JSON
-                # --------------------------------
-
-                json_data = json.dumps(
-                    documento,
-                    separators=(",", ":")
-                )
-
-                print("\nJSON que se enviará:")
-                print(json_data)
-
-                # --------------------------------
-                # Enviar a Helisa
-                # --------------------------------
-
-                response = POST(
-                    url,
-                    json_data
-                )
-
-                if response is not None:
-
-                    print("\nCódigo:", response.status_code)
-
-                    print("Respuesta:")
-
-                    print(response.text)
-
-                    input(
-                        "\nPresiona ENTER para continuar..."
+                input(
+                    "\nPresiona ENTER para continuar..."
                     )
 
             elif opcion == 4:

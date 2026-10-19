@@ -1,0 +1,446 @@
+ [
+    {
+        "Numero_recibo_pago": 54420,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Efectivo",
+                "Valor": 26000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T16:39:53.543",
+        "Estado_pago": "Pagado",
+        "Observaciones": "E2C/ CANCELA SUPLETORIO MOD CUIDADO Y RECUPERACION/ EFECTIVO",
+        "Codigo_estudiante": "114584019021",
+        "Nombre_completo_estudiante": "ANDREA YULIET HERRERA DIAZ",
+        "Numero_identificacion_estudiante": "1098761393",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T16:39:53.543",
+        "Numero_identificacion_cajero": "1098672731",
+        "Nombre_cajero": "Ludy  Arenas Plata",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85054,
+                "Numero_factura": 25578,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 26000.0
+            }
+        ],
+        "Valor_pago": 26000.0
+    },
+    {
+        "Numero_recibo_pago": 54417,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 11000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T15:39:26.167",
+        "Estado_pago": "Pagado",
+        "Observaciones": "CANCELA SEGURO ACCIDENTES/INGRESO RECIBIDO PARA TERCEROS/REPOSTERIA NAVIDEÑA/BANCOLOMBIA 14/10/2026 (UNA SOLA)",
+        "Codigo_estudiante": "114911421263",
+        "Nombre_completo_estudiante": "MAYERLY  PORTILLA PORTILLA",
+        "Numero_identificacion_estudiante": "63534889",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T15:39:26.167",
+        "Numero_identificacion_cajero": "1005323954",
+        "Nombre_cajero": "KEINER JAVIER TORRES TRUJILLO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85053,
+                "Numero_factura": 25577,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 11000.0
+            }
+        ],
+        "Valor_pago": 11000.0
+    },
+    {
+        "Numero_recibo_pago": 54416,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 89000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T15:38:26.033",
+        "Estado_pago": "Pagado",
+        "Observaciones": "REALIZA ABONO AL CURSO DE REPOSTERIA NAVIDEÑA/MARTE 2:00 A 6:00/ SALDO $171.000/BANCOLOMBIA 14/10/2026 ",
+        "Codigo_estudiante": "114911421263",
+        "Nombre_completo_estudiante": "MAYERLY  PORTILLA PORTILLA",
+        "Numero_identificacion_estudiante": "63534889",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T15:38:26.033",
+        "Numero_identificacion_cajero": "1005323954",
+        "Nombre_cajero": "KEINER JAVIER TORRES TRUJILLO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85052,
+                "Numero_factura": 25576,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 89000.0
+            }
+        ],
+        "Valor_pago": 89000.0
+    },
+    {
+        "Numero_recibo_pago": 54414,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 70000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T11:42:18.077",
+        "Estado_pago": "Pagado",
+        "Observaciones": "REALIZA ABONO AL TALLER DE CHOCOLATERIA NAVIDEÑA/SALDO $60.000/BANCOLOMBIA 15/10/2026",
+        "Codigo_estudiante": "110897088968",
+        "Nombre_completo_estudiante": "LUCY EUGENIA ROJAS BOLIVAR",
+        "Numero_identificacion_estudiante": "28045066",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T11:42:18.077",
+        "Numero_identificacion_cajero": "1005323954",
+        "Nombre_cajero": "KEINER JAVIER TORRES TRUJILLO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85051,
+                "Numero_factura": 25575,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 70000.0
+            }
+        ],
+        "Valor_pago": 70000.0
+    },
+    {
+        "Numero_recibo_pago": 54413,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 8000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T11:40:11.193",
+        "Estado_pago": "Pagado",
+        "Observaciones": "EGRESDA/CANCELA VERIFICACIÓN DE TITULO/BANCOLOMBIA 14 OCT",
+        "Codigo_estudiante": "110245540940",
+        "Nombre_completo_estudiante": "MARLEN YULITZA VILLAMIZAR HERNÁNDEZ",
+        "Numero_identificacion_estudiante": "1005541152",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T11:40:11.193",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85050,
+                "Numero_factura": 25574,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 8000.0
+            }
+        ],
+        "Valor_pago": 8000.0
+    },
+    {
+        "Numero_recibo_pago": 54412,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 8000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T11:38:12.237",
+        "Estado_pago": "Pagado",
+        "Observaciones": "EGRESDA/CANCELA VERIFICACIÓN DE TITULO/BANCOLOMBIA 13 OCT",
+        "Codigo_estudiante": "111681769940",
+        "Nombre_completo_estudiante": "DANIELA FERNANDA ACUÑA CARREÑO",
+        "Numero_identificacion_estudiante": "1005333098",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T11:38:12.237",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85049,
+                "Numero_factura": 25573,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 8000.0
+            }
+        ],
+        "Valor_pago": 8000.0
+    },
+    {
+        "Numero_recibo_pago": 54411,
+        "Consecutivo_tercero": 116,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Fondo Voluntariado",
+                "Valor": 800000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T11:31:04.637",
+        "Estado_pago": "Pagado",
+        "Observaciones": "Donación al fondo del voluntariado Congregación Mariana, Somos Entidad Régimen Tributario Especial. Somos autoretenedores de ICA s/acuerdo033/2020 / Efectivo 15 de octubre 2026",
+        "Codigo_estudiante": null,
+        "Nombre_completo_estudiante": null,
+        "Numero_identificacion_estudiante": null,
+        "Nombre_completo_tercero": "ROCIO MABEL TORRES MURILLO",
+        "Numero_identificacion_tercero": "63494008-7",
+        "Fecha_asiento_pago": "2026-10-15T11:31:04.637",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85048,
+                "Numero_factura": 25572,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 800000.0
+            }
+        ],
+        "Valor_pago": 800000.0
+    },
+    {
+        "Numero_recibo_pago": 54410,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Efectivo",
+                "Valor": 26000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T11:13:22.443",
+        "Estado_pago": "Pagado",
+        "Observaciones": "COCI2A/CANCELA SUPLETORIO MODULO INGLES/EFECTIVO ",
+        "Codigo_estudiante": "110566190480",
+        "Nombre_completo_estudiante": "MIGUEL ANGEL VASQUEZ RAMIREZ",
+        "Numero_identificacion_estudiante": "1097499603",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T11:13:22.443",
+        "Numero_identificacion_cajero": "1005323954",
+        "Nombre_cajero": "KEINER JAVIER TORRES TRUJILLO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85047,
+                "Numero_factura": 25571,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 26000.0
+            }
+        ],
+        "Valor_pago": 26000.0
+    },
+    {
+        "Numero_recibo_pago": 54409,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Efectivo",
+                "Valor": 26000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T10:48:30.7",
+        "Estado_pago": "Pagado",
+        "Observaciones": "COC2A/CANCELA SUPLETORIO MODULO INGLES/EFECTIVO ",
+        "Codigo_estudiante": "112237934574",
+        "Nombre_completo_estudiante": "ALICIA YAMILETH GARCIA ZUÑIGA",
+        "Numero_identificacion_estudiante": "1095844629",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T10:48:30.7",
+        "Numero_identificacion_cajero": "1005323954",
+        "Nombre_cajero": "KEINER JAVIER TORRES TRUJILLO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85046,
+                "Numero_factura": 25570,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 26000.0
+            }
+        ],
+        "Valor_pago": 26000.0
+    },
+    {
+        "Numero_recibo_pago": 54407,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Efectivo",
+                "Valor": 26000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T09:26:23.2",
+        "Estado_pago": "Pagado",
+        "Observaciones": "COCI2A/CANCELA PLAN DE MEJORAMIENTO MODULO INGLES/EFECTIVO ",
+        "Codigo_estudiante": "117672138800",
+        "Nombre_completo_estudiante": "RONAL FABIAN PAEZ AVILA",
+        "Numero_identificacion_estudiante": "1102365897",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T09:26:23.2",
+        "Numero_identificacion_cajero": "1005323954",
+        "Nombre_cajero": "KEINER JAVIER TORRES TRUJILLO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85045,
+                "Numero_factura": 25569,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 26000.0
+            }
+        ],
+        "Valor_pago": 26000.0
+    },
+    {
+        "Numero_recibo_pago": 54406,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Efectivo",
+                "Valor": 100000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T08:13:43.797",
+        "Estado_pago": "Pagado",
+        "Observaciones": "\tF3A/REALIZA ABONO A MOD NEGOCIACIÓN/SALDO $151.000/EFECTIVO",
+        "Codigo_estudiante": "111311372688",
+        "Nombre_completo_estudiante": "SHARA MICHELL QUINTERO DIOYES",
+        "Numero_identificacion_estudiante": "1097303280",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T08:13:43.797",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85044,
+                "Numero_factura": 25568,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 100000.0
+            }
+        ],
+        "Valor_pago": 100000.0
+    },
+    {
+        "Numero_recibo_pago": 54405,
+        "Consecutivo_tercero": null,
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 8000.0
+            }
+        ],
+        "Fecha_pago": "2026-10-15T08:10:51.303",
+        "Estado_pago": "Pagado",
+        "Observaciones": "E1A/CANCELA CERTIFICADO DE ESTUDIO/BANCOLOMBIA 08 OCT",
+        "Codigo_estudiante": "111025093954",
+        "Nombre_completo_estudiante": "JOSE ANTONIO PABON SILVA",
+        "Numero_identificacion_estudiante": "1097189558",
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Fecha_asiento_pago": "2026-10-15T08:10:51.303",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Fecha_anulacion": null,
+        "Justificacion_anulacion": null,
+        "Fecha_devolucion": null,
+        "Justificacion_devolucion": null,
+        "Detalles": [
+            {
+                "Consecutivo_factura": 85043,
+                "Numero_factura": 25567,
+                "Consecutivo_resolucion_factura": 1015,
+                "Numero_resolucion_factura": "18764114649811",
+                "Prefijo_resolucion_factura": "FE",
+                "Valor_pagado": 8000.0
+            }
+        ],
+        "Valor_pago": 8000.0
+    }
+]

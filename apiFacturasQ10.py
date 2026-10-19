@@ -44,6 +44,7 @@ def consultar_facturas():
 
     parametros = {}
 
+
     if fecha_inicio:
         parametros["Fecha_inicio"] = fecha_inicio
 
@@ -107,7 +108,6 @@ def consultar_facturas():
             print(json.dumps(resultado, indent=4, ensure_ascii=False))
         except ValueError:
             print(response.text)
-
     except requests.RequestException as error:
         print("Error de conexión:", error)
 

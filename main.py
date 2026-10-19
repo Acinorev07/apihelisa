@@ -1,4 +1,5 @@
 from iu.helisa.menuHelisa import menu_helisa
+from iu.q10.menuQ10 import menu_q10
 from hooks.limpiarPantalla import limpiar_pantalla
 
 
@@ -33,10 +34,23 @@ def main():
             opcion = int(input("Opción: "))
 
             if opcion == 1:
-                menu_helisa()
+
+                try:
+
+                    menu_helisa()
+
+                except Exception as e:
+                        print(f"\nError en la ejecución: {str(e)}")
 
             elif opcion == 2:
-                print("\nQ10 todavía no está i1mplementado.")
+                try:
+                
+                    menu_q10()
+                                    
+                except Exception as e:
+                    print(f"\nError en la ejecución: {str(e)}")
+
+                
                 input("\nPresiona ENTER para continuar...")
                   
             elif opcion == 3:

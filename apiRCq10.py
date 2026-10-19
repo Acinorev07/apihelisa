@@ -27,7 +27,6 @@ def consultar_recivos():
     codigo_persona = input("Código de persona (opcional): ").strip()
     consecutivo_tercero = input("Consecutivo tercero (opcional): ").strip()
     consecutivo_factura = input("Consecutivo factura (opcional): ").strip()
-    estado = input("Estado (1 anulada, 2 pagada, 3 abonada, 4 pendiente): ").strip()
     limite = input("Límite de registros (ENTER = 100): ").strip()
     offset = input("Offset (ENTER = 0): ").strip()
 
@@ -42,19 +41,6 @@ def consultar_recivos():
             return
 
     parametros = {}
-
-   
-
-
- 
-
-   
-
-    if estado:
-        if estado not in {"1", "2", "3", "4"}:
-            print("Estado inválido. Utiliza 1, 2, 3 o 4.")
-            return
-        parametros["Estado"] = estado
 
     try:
         parametros["Limit"] = int(limite) if limite else 100

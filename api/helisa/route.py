@@ -1,5 +1,5 @@
-from repositorio.helisa import post
-from repositorio.helisa import get
+from repositorio.llamadas import post
+from repositorio.llamadas import get
 from hooks.generarFirma import generar_firma
 import os 
 from dotenv import load_dotenv
@@ -7,12 +7,9 @@ from dotenv import load_dotenv
 
 def GET(url):
 
-    key = os.environ["HELISA_API_KEY"]
-    connection_id = os.environ["HELISA_CONNECTION_ID"]
+
 
     try:
-
-
        get(url)
 
 
@@ -24,9 +21,6 @@ def GET(url):
 
 
 def POST(url, json_data):
-
-
-
     try:
 
         # Busca el archivo .env desde la raíz del proyecto
@@ -60,7 +54,7 @@ def POST(url, json_data):
 
 def GET_TERCERO(url, payload, year, di, date):
 
-
+   
 
     try:
 

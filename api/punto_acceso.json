@@ -1,0 +1,18 @@
+{
+    "url_raiz":{
+        "helisa":"https://webconektaorquestador.helisa.com",
+        "q10":"https://api.q10.com/v1/"
+    },
+    "puntos_acceso":{
+        "helisa":{
+            "thirdParty2_0":"/KansasWS/get/thirdParty2_0",
+            "thirdPartyFromAccount":"/KansasWS/summary/thirdPartyFromAccount",
+            "document":"/KansasWS/set/document"
+        },
+        "q10":{
+            "facturas":"facturas",
+            "recibo_caja":"pagos/facturas"
+        }
+
+    }
+}
