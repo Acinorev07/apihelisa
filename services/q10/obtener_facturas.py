@@ -30,7 +30,7 @@ def obtener_facturas():
                 "Debes indicar ambas fechas, o proporcionar "
                 "un código de persona o consecutivo de tercero."
             )
-        return
+            return
         
      parametros = {}
 
@@ -70,7 +70,7 @@ def obtener_facturas():
              print("El offset no puede ser negativo.")
              return
 
-     print("parametros", parametros)
+     print(f"parametros: {parametros}")
 
      response = GET(url, params = parametros)
 
@@ -88,4 +88,9 @@ def obtener_facturas():
         
         except ValueError:
             print(response.text)
+
+     else:
+
+        print("errrroooor")
+           
      

@@ -5,8 +5,9 @@ def get(url, headers=None, params=None):
 
     return requests.get(
         url,
+        params=params,
         headers=headers,
-        params=params
+        timeout=30
     )
 
 
