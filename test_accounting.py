@@ -270,9 +270,53 @@ from services.accounting import construir_documento_helisa
 
 # ****************************************************************************************************
 
-from apiFacturasQ10 import consultar_facturas
+# from utils.apiFacturasQ10 import consultar_facturas
 # Llamamos las facturas 
 
-facturas = consultar_facturas()
+# facturas = consultar_facturas()
 
-print(facturas)
+# print(facturas)
+
+from hooks.configuracion_APIs import obtener_url
+from api.q10.route import GET
+import json
+
+
+url = obtener_url(
+    "q10",
+    "facturas"
+)
+
+parametros = {
+    'Fecha_inicio':'2026-10-15',
+    'Fecha_fin':'2026-10-15',
+    '0ffset':0,
+    'Limit': 100
+}
+
+response = GET(url, params = parametros)
+
+if response is not None:
+    print("\nCódigo HTTP:", response.status_code)
+    print("\nRespuesta de Q10:")
+
+    try:
+
+        # respuesta = json.dumps(
+        #     response.json(),
+        #     indent=4,
+        #     ensure_ascii=False,
+        # )
+
+        # print(respuesta)
+
+        datos = response.json()
+
+        print("Cantidad de facturas:", len(datos))
+        
+    except ValueError:
+            print(response.text)
+
+else:
+
+    print("errrroooor")

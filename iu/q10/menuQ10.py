@@ -1,6 +1,7 @@
 from hooks.limpiarPantalla import limpiar_pantalla
 from services.q10.obtener_facturas import obtener_facturas
 from services.q10.obtener_pago_facturas import obtener_pago_facturas
+from services.q10.obtener_pago_creditos import obtener_pago_creditos
 import json
 from datetime import datetime
 import time
@@ -43,7 +44,10 @@ def menu_q10():
 
             elif opcion == 3:
                     limpiar_pantalla()  
-                    print("En construccion...")
+                    response = obtener_pago_creditos()
+
+                    print(response)
+
 
                     input("\nPresiona ENTER para continuar...")
                 

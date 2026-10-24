@@ -1,0 +1,236 @@
+[
+    {
+        "Consecutivo_credito": 8688,
+        "Codigo_persona": "117076971683",
+        "Nombre_completo": "CARLOS ARTURO QUINTERO PEDRAZA",
+        "Numero_identificacion": "1098793046",
+        "Codigo_cajero": "337567510624",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Pagare": "1098793046-2",
+        "Numero_recibo_pago": "54418",
+        "Prefijo_resolucion": null,
+        "Fecha_pago": "2026-10-15T15:55:47.267",
+        "Fecha_asiento": "2026-10-15T15:55:47.25",
+        "Observacion": "E2FDS/CANCELA CUOTA 2 DE CREDITO DIRECTO 2026-2/BANCOLOMBIA 15 OCT",
+        "Saldo_capital_anterior": 1957900.0,
+        "Abono_interes_corriente": 29369.0,
+        "Abono_interes_mora": 0.0,
+        "Abono_penalizacion": 0.0,
+        "Abono_capital": 478631.0,
+        "Nuevo_saldo_capital": 1479269.0,
+        "Estado": "Pagado",
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 508000.0
+            }
+        ],
+        "Detalle_cuotas": [
+            {
+                "Numero_cuota": 2,
+                "Pagado": 507967.0
+            },
+            {
+                "Numero_cuota": 3,
+                "Pagado": 33.0
+            }
+        ]
+    },
+    {
+        "Consecutivo_credito": 8653,
+        "Codigo_persona": "111259392021",
+        "Nombre_completo": "GISETH DANNAE LIZARAZO PIÑA",
+        "Numero_identificacion": "1097100624",
+        "Codigo_cajero": "332877545588",
+        "Numero_identificacion_cajero": "1098672731",
+        "Nombre_cajero": "Ludy Arenas Plata",
+        "Pagare": "1097100624-3",
+        "Numero_recibo_pago": "54408",
+        "Prefijo_resolucion": null,
+        "Fecha_pago": "2026-10-15T10:22:43.773",
+        "Fecha_asiento": "2026-10-15T10:22:43.773",
+        "Observacion": "SO3C/ CANCEL ACUOTA SEPTIEMBRE/ EFECTIVO",
+        "Saldo_capital_anterior": 1670900.0,
+        "Abono_interes_corriente": 44001.0,
+        "Abono_interes_mora": 3063.0,
+        "Abono_penalizacion": 0.0,
+        "Abono_capital": 388936.0,
+        "Nuevo_saldo_capital": 1281964.0,
+        "Estado": "Pagado",
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Efectivo",
+                "Valor": 436000.0
+            }
+        ],
+        "Detalle_cuotas": [
+            {
+                "Numero_cuota": 2,
+                "Pagado": 417063.0
+            },
+            {
+                "Numero_cuota": 3,
+                "Pagado": 18937.0
+            }
+        ]
+    },
+    {
+        "Consecutivo_credito": 8644,
+        "Codigo_persona": "117085978235",
+        "Nombre_completo": "FLOR DAYANCY CUERVO HIDALGO",
+        "Numero_identificacion": "1151435789",
+        "Codigo_cajero": "332877545588",
+        "Numero_identificacion_cajero": "1098672731",
+        "Nombre_cajero": "Ludy Arenas Plata",
+        "Pagare": "1151435789",
+        "Numero_recibo_pago": "54421",
+        "Prefijo_resolucion": null,
+        "Fecha_pago": "2026-10-15T16:50:01.69",
+        "Fecha_asiento": "2026-10-15T16:50:01.677",
+        "Observacion": "SO2C/ CANCELA CUOTA OCTUBRE/ BANCOLOMBIA 15 OC",
+        "Saldo_capital_anterior": 536519.0,
+        "Abono_interes_corriente": 0.0,
+        "Abono_interes_mora": 111.0,
+        "Abono_penalizacion": 0.0,
+        "Abono_capital": 181889.0,
+        "Nuevo_saldo_capital": 354630.0,
+        "Estado": "Pagado",
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 182000.0
+            }
+        ],
+        "Detalle_cuotas": [
+            {
+                "Numero_cuota": 2,
+                "Pagado": 7741.0
+            },
+            {
+                "Numero_cuota": 3,
+                "Pagado": 173678.0
+            },
+            {
+                "Numero_cuota": 4,
+                "Pagado": 581.0
+            }
+        ]
+    },
+    {
+        "Consecutivo_credito": 8574,
+        "Codigo_persona": "114432173149",
+        "Nombre_completo": "SARA VANESA MORALES RAMOS",
+        "Numero_identificacion": "1003087227",
+        "Codigo_cajero": "337567510624",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Pagare": "1003087227-2",
+        "Numero_recibo_pago": "54419",
+        "Prefijo_resolucion": null,
+        "Fecha_pago": "2026-10-15T16:00:22.46",
+        "Fecha_asiento": "2026-10-15T16:00:22.443",
+        "Observacion": "E2C/CANCELA CUOTA 2 DE CREDITO DIRECTO 2026-2/BANCOLOMBIA 15 OCT",
+        "Saldo_capital_anterior": 1500012.0,
+        "Abono_interes_corriente": 14896.0,
+        "Abono_interes_mora": 4113.0,
+        "Abono_penalizacion": 0.0,
+        "Abono_capital": 495991.0,
+        "Nuevo_saldo_capital": 1004021.0,
+        "Estado": "Pagado",
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 515000.0
+            }
+        ],
+        "Detalle_cuotas": [
+            {
+                "Numero_cuota": 2,
+                "Pagado": 21861.0
+            },
+            {
+                "Numero_cuota": 3,
+                "Pagado": 478243.0
+            },
+            {
+                "Numero_cuota": 4,
+                "Pagado": 14896.0
+            }
+        ]
+    },
+    {
+        "Consecutivo_credito": 8530,
+        "Codigo_persona": "115786194374",
+        "Nombre_completo": "SOFIA VALENTINA MARTINEZ RODELO",
+        "Numero_identificacion": "1095307289",
+        "Codigo_cajero": "332877545588",
+        "Numero_identificacion_cajero": "1098672731",
+        "Nombre_cajero": "Ludy Arenas Plata",
+        "Pagare": "1095307289-3",
+        "Numero_recibo_pago": "54422",
+        "Prefijo_resolucion": null,
+        "Fecha_pago": "2026-10-15T17:38:41.62",
+        "Fecha_asiento": "2026-10-15T17:38:41.607",
+        "Observacion": "SO3C/ CANCELA ULTIMA CUOTA CREDITO 2026-2-PAZY SALVO- /BANCOLOMBIA 15 OCT",
+        "Saldo_capital_anterior": 426722.0,
+        "Abono_interes_corriente": 6407.0,
+        "Abono_interes_mora": 0.0,
+        "Abono_penalizacion": 0.0,
+        "Abono_capital": 426722.0,
+        "Nuevo_saldo_capital": 0.0,
+        "Estado": "Pagado",
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 433129.0
+            }
+        ],
+        "Detalle_cuotas": [
+            {
+                "Numero_cuota": 5,
+                "Pagado": 433129.0
+            }
+        ]
+    },
+    {
+        "Consecutivo_credito": 8524,
+        "Codigo_persona": "115020810145",
+        "Nombre_completo": "ASTRID DANESA CORREA BUILES",
+        "Numero_identificacion": "1098684677",
+        "Codigo_cajero": "337567510624",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Pagare": "1098684677",
+        "Numero_recibo_pago": "54415",
+        "Prefijo_resolucion": null,
+        "Fecha_pago": "2026-10-15T11:49:38.473",
+        "Fecha_asiento": "2026-10-15T11:49:38.443",
+        "Observacion": "E1FDS/CANCELA SALDO DE CREDITO DIRECTO 2026-1/BANCOLOMBIA 15 OCT",
+        "Saldo_capital_anterior": 3170.0,
+        "Abono_interes_corriente": 0.0,
+        "Abono_interes_mora": 11.0,
+        "Abono_penalizacion": 0.0,
+        "Abono_capital": 3170.0,
+        "Nuevo_saldo_capital": 0.0,
+        "Estado": "Pagado",
+        "Formas_pago": [
+            {
+                "Nombre_cuenta": "Caja General",
+                "Nombre_forma_pago": "Consignación",
+                "Valor": 3181.0
+            }
+        ],
+        "Detalle_cuotas": [
+            {
+                "Numero_cuota": 5,
+                "Pagado": 3181.0
+            }
+        ]
+    }
+]

@@ -11,7 +11,8 @@
         },
         "q10":{
             "facturas":"facturas",
-            "pago_facturas":"pagos/facturas"
+            "pago_facturas":"pagos/facturas",
+            "pago_creditos":"pagos/creditos"
         }
 
     }
