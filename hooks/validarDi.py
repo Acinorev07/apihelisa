@@ -1,20 +1,31 @@
 
 import re
 
-def validar_documento_tercero(mensaje="Introduce el documento de identidad del tercero: "):
+
+def validar_documento_tercero(di):
     """
-    Solicita un documento de identidad y valida que contenga
-    únicamente dígitos del 0 al 9.
+    Limpia y valida el documento de identidad.
+
+    Si contiene un guion seguido de un dígito de verificación,
+    elimina el guion y el dígito de verificación.
 
     Retorna el documento como str para conservar los ceros iniciales.
     """
-    while True:
-        documento = input(mensaje).strip()
 
-        if re.fullmatch(r"[0-9]+", documento):
-            return documento
+    if di is None:
+        raise ValueError("El documento de identidad no puede estar vacío.")
 
-        print(
-            "Error: el documento debe contener únicamente números. "
-            "Inténtalo nuevamente."
+    di = str(di).strip()
+
+    # Si tiene un guion seguido de un dígito, elimina ambos.
+    di = re.sub(r"-\d$", "", di)
+
+    # Validar que el documento resultante contenga solo números.
+    if not re.fullmatch(r"[0-9]+", di):
+        raise ValueError(
+            "El documento debe contener únicamente números, "
+            "opcionalmente con un dígito de verificación al final "
+            "separado por un guion."
         )
+
+    return di

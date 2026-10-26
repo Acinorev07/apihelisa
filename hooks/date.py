@@ -8,6 +8,6 @@ def dateMillisec(fecha=None):
     if fecha is None or fecha == "":
         return int(t.time() * 1000)
 
-    fecha_obj = datetime.strptime(fecha, "%d-%m-%Y")
+    fecha_obj = datetime.strptime(fecha, "%Y-%m-%d")
 
     return int(fecha_obj.timestamp() * 1000)

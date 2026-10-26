@@ -80,11 +80,7 @@ def obtener_facturas():
 
         try:
             
-            return json.dumps(
-                    response.json(),
-                    indent=4,
-                    ensure_ascii=False,
-                )
+            return response.json()
         
         except ValueError:
             print(response.text)

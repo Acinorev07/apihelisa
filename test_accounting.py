@@ -277,30 +277,32 @@ from services.accounting import construir_documento_helisa
 
 # print(facturas)
 
-from hooks.configuracion_APIs import obtener_url
-from api.q10.route import GET
-import json
+# from hooks.configuracion_APIs import obtener_url
+# from hooks.date import dateMillisec
+# from api.q10.route import GET
+# from api.helisa.route import GET_TERCERO
+# import json
 
 
-url = obtener_url(
-    "q10",
-    "facturas"
-)
+# url = obtener_url(
+#     "q10",
+#     "facturas"
+# )
 
-parametros = {
-    'Fecha_inicio':'2026-10-15',
-    'Fecha_fin':'2026-10-15',
-    '0ffset':0,
-    'Limit': 100
-}
+# parametros = {
+#     'Fecha_inicio':'2026-10-15',
+#     'Fecha_fin':'2026-10-15',
+#     'offset':0,
+#     'Limit': 100
+# }
 
-response = GET(url, params = parametros)
+# response = GET(url, params = parametros)
 
-if response is not None:
-    print("\nCódigo HTTP:", response.status_code)
-    print("\nRespuesta de Q10:")
+# if response is not None:
+#     print("\nCódigo HTTP:", response.status_code)
+#     print("\nRespuesta de Q10:")
 
-    try:
+#     try:
 
         # respuesta = json.dumps(
         #     response.json(),
@@ -310,13 +312,254 @@ if response is not None:
 
         # print(respuesta)
 
-        datos = response.json()
+        # datos = response.json()
 
-        print("Cantidad de facturas:", len(datos))
+        # print("Cantidad de facturas:", len(datos))
+
         
+        # cedulas = []
+
+        # no_existe = []
+
+        # for factura in datos:
+
+            # numero = factura["Numero_factura"]
+            # nombre = factura["Nombre_completo_estudiante"]
+            # valor = factura["Valor_total"]
+            # estado = factura["Estado_factura"]
+
+            # print(
+            #     f"Factura: {numero} | "
+            #     f"Estudiante: {nombre} | "
+            #     f"Valor: ${valor:,.0f} | "
+            #     f"Estado: {estado}"
+            # )
+
+            # # Recorrer los productos de esta factura
+            # for producto in factura["Productos"]:
+            #     print(
+            #         "Producto:", producto["Nombre_producto"],
+            #         "| Código:", producto["Codigo_producto"],
+            #         "| Valor:", producto["Valor_a_pagar"]
+            #     )
+
+            # # Recorrer los pagos de esta factura
+            # for pago in factura["Pagos"]:
+            #     print(
+            #         "Recibo:", pago["Numero_recibo_pago"],
+            #         "| Fecha:", pago["Fecha_pago"],
+            #         "| Valor:", pago["Valor"],
+            #         "| Estado:", pago["Estado_pago"]
+            #     )
+
+#             id_tercero = factura["Numero_identificacion_estudiante"]
+
+#             if id_tercero is not "null":
+#                  cedulas.append(id_tercero)
+
+
+#         print(cedulas)
+
+
+#         fecha = parametros["Fecha_inicio"]
+#         year = "2026" 
+#         date = dateMillisec(fecha)
+#         for di in cedulas:
+#             payload = f"{year}|{di}|{date}"
+
+#             response = GET_TERCERO(
+#                 url, 
+#                 payload,
+#                 year,
+#                 di,
+#                 date
+#                 )
+            
+#             if response is not None:
+#                 print("\nCódigo HTTP:", response.status_code)
+#                 print("\nRespuesta de Helisa:")
+
+#                 try:
+            
+#                      resp =  json.dumps(
+#                             response.json(),
+#                             indent=4,
+#                             ensure_ascii=False,
+#                         )
+
+#                      if resp is None:
+#                           no_existe.append(resp)
+        
+#                 except ValueError:
+#                     print(response.text)
+
+
+
+        
+#     except ValueError:
+#             print(response.text)
+
+# else:
+
+#     print("errrroooor")
+
+
+
+from hooks.configuracion_APIs import obtener_url
+from hooks.date import dateMillisec
+from api.q10.route import GET
+from api.helisa.route import GET_TERCERO
+from datetime import datetime
+import json
+
+
+# -----------------------------------------
+# 1. Consultar facturas de Q10
+# -----------------------------------------
+
+url_q10 = obtener_url("q10", "facturas")
+url_helisa = obtener_url("helisa", "thirdParty2_0")
+
+parametros = {
+    "Fecha_inicio": "2026-10-23",
+    "Fecha_fin": "2026-10-23",
+    "Offset": 0,
+    "Limit": 100,
+}
+
+response_q10 = GET(url_q10, params=parametros)
+
+if response_q10 is None:
+    print("No se recibió respuesta de Q10.")
+    raise SystemExit
+
+if response_q10.status_code != 200:
+    print("Error consultando Q10:", response_q10.status_code)
+    print(response_q10.text)
+    raise SystemExit
+
+try:
+    datos = response_q10.json()
+except ValueError:
+    print("Q10 no devolvió un JSON válido.")
+    print(response_q10.text)
+    raise SystemExit
+
+if not isinstance(datos, list):
+    print("La respuesta de Q10 no es una lista de facturas.")
+    raise SystemExit
+
+
+print("Cantidad de facturas:", len(datos))
+
+
+# -----------------------------------------
+# 2. Extraer cédulas únicas
+# -----------------------------------------
+
+cedulas = set()
+
+for factura in datos:
+    id_tercero = factura.get("Numero_identificacion_estudiante")
+
+    if id_tercero is not None:
+        id_tercero = str(id_tercero).strip()
+
+        if id_tercero and id_tercero.lower() != "null":
+            cedulas.add(id_tercero)
+
+print("Cantidad de cédulas únicas:", len(cedulas))
+
+
+# -----------------------------------------
+# 3. Preparar los parámetros de Helisa
+# -----------------------------------------
+
+fecha = parametros["Fecha_inicio"]
+
+# Si dateMillisec espera DD-MM-YYYY, convertimos la fecha.
+# fecha_helisa = datetime.strptime(fecha, "%Y-%m-%d").strftime("%d-%m-%Y")
+
+year = datetime.strptime(fecha, "%Y-%m-%d").year
+date = dateMillisec(fecha)
+
+no_existe = []
+errores_consulta = []
+
+
+# -----------------------------------------
+# 4. Consultar cada cédula en Helisa
+# -----------------------------------------
+
+for di in sorted(cedulas):
+
+    payload = f"{year}|{di}|{date}"
+
+    respuesta_helisa = GET_TERCERO(
+        url_helisa,
+        payload,
+        year,
+        di,
+        date
+    )
+
+    if respuesta_helisa is None:
+        errores_consulta.append({
+            "cedula": di,
+            "motivo": "No se recibió respuesta de Helisa"
+        })
+        continue
+
+    codigo = respuesta_helisa.status_code
+
+    if codigo == 204:
+        # La documentación indica que no hay resultados.
+        no_existe.append(di)
+        continue
+
+    if codigo != 200:
+        errores_consulta.append({
+            "cedula": di,
+            "codigo_http": codigo,
+            "respuesta": respuesta_helisa.text
+        })
+        continue
+
+    try:
+        resultado = respuesta_helisa.json()
     except ValueError:
-            print(response.text)
+        errores_consulta.append({
+            "cedula": di,
+            "motivo": "Helisa no devolvió un JSON válido",
+            "respuesta": respuesta_helisa.text
+        })
+        continue
 
-else:
+    # Una lista vacía indica que no se encontraron registros.
+    if isinstance(resultado, list) and len(resultado) == 0:
+        no_existe.append(di)
+    else:
+        print(f"Cédula {di}: respuesta recibida; revisar resultado.")
 
-    print("errrroooor")
+
+# -----------------------------------------
+# 5. Mostrar el resumen
+# -----------------------------------------
+
+print("\n========== RESUMEN ==========")
+print("Cédulas consultadas:", len(cedulas))
+print("Cédulas no encontradas:", len(no_existe))
+print("Consultas con errores:", len(errores_consulta))
+
+print("\nCédulas que no aparecen en Helisa:")
+
+for di in no_existe:
+    print(di)
+
+if errores_consulta:
+    print("\nConsultas que necesitan revisión:")
+    print(json.dumps(
+        errores_consulta,
+        indent=4,
+        ensure_ascii=False
+    ))

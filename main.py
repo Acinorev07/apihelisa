@@ -1,25 +1,10 @@
 from iu.helisa.menuHelisa import menu_helisa
 from iu.q10.menuQ10 import menu_q10
+from iu.manifold.menuManifold import menu_manifold
 from hooks.limpiarPantalla import limpiar_pantalla
 
 
 def main():
-
-    config = {
-            "id_API": {
-                "1": "Helisa",
-                "2": "Q10"
-            },
-            "format_date":{
-                "1":'%Y%m%d',
-                "2":'%d/%m/%Y'
-                },
-            "id_url_final":{
-                "1":"helisa",
-                "2":"Q10"
-            }
-
-        }
 
     try:
 
@@ -29,7 +14,8 @@ def main():
             print("\n--- Acceder APIs ---")
             print("1: Helisa")
             print("2: Q10")
-            print("3: Salir")
+            print("3: Manifold")
+            print("4: Salir")
 
             opcion = int(input("Opción: "))
 
@@ -52,8 +38,20 @@ def main():
 
                 
                 input("\nPresiona ENTER para continuar...")
-                  
+
             elif opcion == 3:
+                try:
+                
+                    menu_manifold()
+                                    
+                except Exception as e:
+                    print(f"\nError en la ejecución: {str(e)}")
+
+                
+                input("\nPresiona ENTER para continuar...")
+
+                  
+            elif opcion == 4:
                 print("Saliendo del programa...")
                 break
             else:

@@ -2,6 +2,7 @@ from hooks.limpiarPantalla import limpiar_pantalla
 from services.q10.obtener_facturas import obtener_facturas
 from services.q10.obtener_pago_facturas import obtener_pago_facturas
 from services.q10.obtener_pago_creditos import obtener_pago_creditos
+from hooks.obtener_estudiante_tercero import obtener_estudiante_tercero
 import json
 from datetime import datetime
 import time
@@ -29,7 +30,21 @@ def menu_q10():
                 limpiar_pantalla()
                 response = obtener_facturas()
 
-                print(response)
+                # print(json.dumps(
+                #      response,
+                #      indent=4,
+                #      ensure_ascii=False,
+                # ))
+
+                for factura in response:
+                    nombre = obtener_estudiante_tercero(
+                         "Nombre_completo_estudiante",
+                         "Nombre_completo_tercero",
+                         factura
+                    )
+
+                    print(f"Nombre tercero: {nombre}")
+                    
 
                 input("\nPresiona ENTER para continuar...")
 

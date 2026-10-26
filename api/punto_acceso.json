@@ -7,7 +7,8 @@
         "helisa":{
             "thirdParty2_0":"/KansasWS/get/thirdParty2_0",
             "thirdPartyFromAccount":"/KansasWS/summary/thirdPartyFromAccount",
-            "document":"/KansasWS/set/document"
+            "document":"/KansasWS/set/document",
+            "create_tercero":"/KansasWS/set/thirdParty2_0"
         },
         "q10":{
             "facturas":"facturas",

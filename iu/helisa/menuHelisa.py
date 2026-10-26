@@ -2,6 +2,9 @@ from hooks.limpiarPantalla import limpiar_pantalla
 from services.helisa.obtener_tercero import obtener_tercero
 from services.helisa.obtener_saldos_cuentas import obtener_saldos_cuenta
 from services.helisa.insertar_documento import insertar_documento
+from iu.forms.form_obtener_tercero import form_obtener_tercero
+import json
+
 
 
 def menu_helisa():
@@ -26,9 +29,15 @@ def menu_helisa():
                 try:
                     limpiar_pantalla()
 
-                    response = obtener_tercero()
+                    fecha, docId = form_obtener_tercero()
+                    
+                    response = obtener_tercero(fecha, docId)
 
-                    print(response)
+                    print(json.dumps(
+                            response.json(),
+                            indent=4,
+                            ensure_ascii=False,
+                        ))
 
                 except Exception as e:
                             print(f"\nError en la ejecución: {str(e)}")

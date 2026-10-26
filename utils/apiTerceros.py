@@ -1,58 +1,49 @@
-import os
-import time
-import hmac
-import hashlib
-import requests
-
-import generar_firma
-
-
-def generar_firma(key, payload):
-    clave = bytes.fromhex(key)
-
-    return hmac.new(
-        clave,
-        payload.encode("utf-8"),
-        hashlib.sha256
-    ).hexdigest()
-
+from api.helisa.route import GET_TERCERO
+from hooks.configuracion_APIs import obtener_url
+from hooks.date import dateMillisec
+from datetime import datetime
+# import generar_firma
 
 def main():
 
-    client_id = os.environ["HELIDA_CLIENT_ID"]
-    key = os.environ["HELISA_API_KEY"]
-
-    url = (
-        "https://webconektaorquestador.helisa.com"
-        "/KansasWS/summary/thirdPartyFromAccount"
+    
+    url = obtener_url(
+        "helisa",
+        "thirdParty2_0"
     )
 
-    # Epoch en milisegundos
-    date = int(time.time() * 1000)
-
-    # IMPORTANTE:
-    # La firma se calcula sobre ESTE STRING exacto.
-    json_data = (
-        '{"date":' + str(date) +
-        ',"account":"41600501"}'
-    )
-
-    sign = generar_firma(key, json_data)
-
-    params = {
-        "json": json_data,
-        "id": client_id,
-        "sign": sign
+    parametros = {
+        "Fecha_inicio": "2026-10-23",
+        "Fecha_fin": "2026-10-23",
+        "di":"1097780022"
     }
 
-    response = requests.post(
-        url,
-        params=params
-    )
+    fecha = parametros["Fecha_inicio"]
+    di = parametros["di"]
+    year = datetime.strptime(fecha, "%Y-%m-%d").year
+    date = dateMillisec(fecha)
 
-    print("Código:", response.status_code)
-    print("Respuesta:")
-    print(response.text)
+
+    payload = f"{year}|{di}|{date}"
+
+    response = GET_TERCERO(
+        url, 
+        payload,
+        year,
+        di,
+        date
+        )
+            
+    if response is not None:
+        print("\nCódigo HTTP:", response.status_code)
+        print("\nRespuesta de Helisa:")
+
+        try:
+            
+             print(response.json())
+        
+        except ValueError:
+            print(response.text)
 
 
 if __name__ == "__main__":
