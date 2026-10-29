@@ -5,19 +5,49 @@ import os
 from dotenv import load_dotenv
 
 
-def GET(url):
+def GET(url, date=None):
 
-
+    load_dotenv()
 
     try:
-       get(url)
+        # Obtener las credenciales desde el archivo .env
+        key = os.environ["HELISA_API_KEY"]
+        client_id = os.environ["HELISA_CLIENT_ID"]
 
+        # Helisa exige firmar el valor de date como texto.
+        # Si date no existe, el payload debe ser literalmente "null".
+        payload = str(date) if date is not None else "null"
 
+        sign = generar_firma(
+            key,
+            payload
+        )
 
-    except Exception as e:
-        print(f"\nError en la ejecución: {str(e)}")
+        # Parámetros que se enviarán en la URL
+        params = {
+            "id": client_id,
+            "sign": sign
+        }
+
+        # Solo enviar date si tiene un valor.
+        if date is not None:
+            params["date"] = str(date)
+
+        # Ejecutar la petición y conservar la respuesta.
+        response = get(
+            url,
+            params=params
+        )
+
+        return response
+
+    except KeyError as e:
+        print(f"Error: falta una variable de entorno: {e}")
         return None
 
+    except Exception as e:
+        print(f"\nError en la ejecución: {e}")
+        return None
 
 
 def POST(url, json_data):
