@@ -9,7 +9,8 @@
             "thirdPartyFromAccount":"/KansasWS/summary/thirdPartyFromAccount",
             "document":"/KansasWS/set/document",
             "create_tercero":"/KansasWS/set/thirdParty2_0",
-            "lista_documentos":"/KansasWS/get/listDocument"
+            "lista_documentos":"/KansasWS/get/listDocument",
+            "summary_documento": "/KansasWS/summary/document"
         },
         "q10":{
             "facturas":"facturas",
