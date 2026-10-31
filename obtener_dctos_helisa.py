@@ -5,7 +5,7 @@ import json
 
 
 
-def obtener_dcto_helisa():
+def obtener_dctos_helisa():
 
     fecha = input(
         "Ingresa la fecha en formato YYYY-MM-DD "
