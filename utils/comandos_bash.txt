@@ -1,0 +1,72 @@
+Crear un archivo en la raiz de la carpeta
+
+New-Item -Path requeriments.txt -ItemType File
+
+
+Almacenar las librerias necesarias para un proyecto de python en el archivo requeriments.txt
+python -m pip freeze > requirements.txt
+
+
+*******************************************************************************************************************************************************
+
+3. Automatizar la actualización de requirements.txt
+Si quieres evitar escribir dos comandos cada vez que instales una dependencia, podemos crear una función en PowerShell.
+
+Ejecuta lo siguiente en tu terminal:
+function pip-install {
+    python -m pip install $args
+
+    if ($LASTEXITCODE -eq 0) {
+        python -m pip freeze | Set-Content requirements.txt
+    }
+}
+
+Ahora, cuando quieras instalar una biblioteca, utiliza:
+pip-install requests
+
+O instala varias:
+pip-install requests pandas python-dotenv
+
+La función instalará los paquetes y, si la instalación termina correctamente, actualizará requirements.txt.
+
+Ten presente dos cosas:
+- Esta función solo estará disponible en la sesión actual de PowerShell. Si quieres conservarla permanentemente, podemos agregarla a tu perfil de PowerShell.
+- Este método registra todas las dependencias instaladas en el entorno virtual, no únicamente las que acabas de instalar.
+Si prefieres seguir utilizando el comando habitual python -m pip install, tendrás que actualizar el archivo manualmente después.
+
+
+*******************************************************************************************************************************************************
+
+
+4. Recuperar el proyecto en otro computador
+Esta es la razón por la que resulta tan útil tener requirements.txt en GitHub.
+
+Cuando clones apihelisa en otro PC, puedes crear un entorno virtual e instalar las dependencias registradas en el archivo.
+
+Por ejemplo:
+git clone URL_DE_TU_REPOSITORIO
+cd apihelisa
+
+Crea el entorno virtual:
+python -m venv .venv
+
+Actívalo:
+.\.venv\Scripts\Activate.ps1
+
+Actualiza pip:
+python -m pip install --upgrade pip
+
+Instala las dependencias:
+python -m pip install -r requirements.txt
+
+De esta manera, tendrás las versiones registradas en el archivo, siempre que sean compatibles con el sistema y la versión de Python del nuevo computador.
+
+Después, puedes guardar los cambios en Git:
+git add requirements.txt
+git commit -m "Actualizar dependencias"
+git push
+
+Así podrás descargar la lista actualizada desde tus otros computadores.
+
+
+***********************************************************************************************************************************************************************************************************************

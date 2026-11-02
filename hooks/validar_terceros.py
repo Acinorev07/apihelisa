@@ -3,31 +3,6 @@ from services.helisa.obtener_tercero import obtener_tercero
 from hooks.validarDi import validar_documento_tercero
 from hooks.obtener_estudiante_tercero import obtener_estudiante_tercero
 
-# def obtener_estudiante_tercero(campo_estudiante,campo_tercero,factura):
-#     """
-#     Busca primero la identificación del estudiante.
-#     Si no existe, utiliza la identificación del tercero.
-#     """
-
-#     for campo in (
-#         "Numero_identificacion_estudiante",
-#         "Numero_identificacion_tercero",
-#     ):
-#         identificacion = factura.get(campo)
-
-#         if identificacion is None:
-#             continue
-
-#         identificacion = str(identificacion).strip()
-
-#         if identificacion and identificacion.lower() != "null":
-#             try:
-#                 return validar_documento_tercero(identificacion)
-#             except ValueError:
-#                 continue
-
-#     return None
-
 
 def validar_terceros():
     datos = obtener_facturas()

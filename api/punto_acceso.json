@@ -15,7 +15,11 @@
         "q10":{
             "facturas":"facturas",
             "pago_facturas":"pagos/facturas",
-            "pago_creditos":"pagos/creditos"
+            "pago_creditos":"pagos/creditos",
+            "obtener_estudiante":"estudiantes",
+            "obtener_programas":"programas",
+            "obtener_terceros":"terceros",
+            "obtener_tercero":"terceros"
         }
 
     }

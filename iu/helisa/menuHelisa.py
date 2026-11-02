@@ -3,6 +3,7 @@ from services.helisa.obtener_tercero import obtener_tercero
 from services.helisa.obtener_saldos_cuentas import obtener_saldos_cuenta
 from services.helisa.insertar_documento import insertar_documento
 from services.helisa.obtener_dcto_helisa import obtener_dcto_helisa
+from services.helisa.obtener_dctos_helisa import obtener_dctos_helisa
 from iu.forms.form_obtener_tercero import form_obtener_tercero
 from iu.forms.solicitar_fecha import solicitar_fecha
 from iu.forms.solicitar_tipo_contabilidad import solicitar_tipo_contabilidad
@@ -101,11 +102,32 @@ def menu_helisa():
                         "Ingresa la fecha final (YYYY-MM-DD): "
                     )
 
+                    response_tipos = obtener_dctos_helisa(
+                                fecha=fecha_final
+                            )
 
-                    # Solicitar documento
+                    
+                    if not response_tipos or "document" not in response_tipos:
+                        print("No fue posible obtener los tipos de documentos de Helisa.")
+                        input("\nPresiona ENTER para continuar...")
+                        continue
+
+
+                    documentos = response_tipos["document"]
+
+                    print("\nTIPOS DE DOCUMENTOS DISPONIBLES\n")
+                    
+                    for dcto in documentos:
+                        print(
+                            f"Tipo: {dcto['type']:<6} | "
+                            f"Nombre: {dcto['name']}"
+                        )
+
+                    # Solicitar y validar el tipo de documento
                     documento = solicitar_documento(
-                         "Ingresa el tipo de documento (ejemplo FV): "
-                         )
+                        "Ingresa el tipo de documento (ejemplo FE): ",
+                        documentos
+                     )
 
                     # Solicitar tipo de contabilidad
                     accounting_type = solicitar_tipo_contabilidad()
@@ -139,14 +161,35 @@ def menu_helisa():
                     )
 
             elif opcion == 5:
-                 try:
-                     limpiar_pantalla()
+                try:
+                    limpiar_pantalla()
 
-                 except Exeption as e:
-                     print(f"\nError en la ejecución: {str(e)}")
-                     return None
+                    # Solicitar fecha
+                    fecha = solicitar_fecha(
+                        "Ingresa la fecha con el siguiente formato (YYYY-MM-DD): "
+                    )
 
-                    
+                    response = obtener_dctos_helisa(fecha=fecha)
+
+                    if response and "document" in response:
+
+                        print("\nTIPOS DE DOCUMENTOS DISPONIBLES\n")
+
+                        for dcto in response["document"]:
+                            print(
+                                f"Tipo: {dcto['type']:<6} | "
+                                f"Nombre: {dcto['name']}"
+                            )
+
+                    else:
+                        print("No se encontraron documentos.")
+
+                except Exception as e:
+                    print(f"\nError en la ejecución: {str(e)}")
+
+                input("\nPresiona ENTER para continuar...")
+
+                
 
 
             elif opcion == 6:

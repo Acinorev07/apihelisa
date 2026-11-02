@@ -754,5 +754,68 @@
                 "Estado_pago": "Pagado"
             }
         ]
+    },
+    {
+        "Numero_factura": "25663",
+        "Consecutivo_factura": 85139,
+        "Consecutivo_resolucion": 1015,
+        "Numero_resolucion": "18764114649811",
+        "Prefijo_resolucion": "FE",
+        "Fecha_factura": "2026-10-21T13:43:41.757",
+        "Fecha_resolucion": "2026-08-27T00:00:00",
+        "Fecha_anulacion": null,
+        "Consecutivo_periodo": 1037,
+        "Nombre_periodo": "2026-2",
+        "Valor_total": 1100000.0,
+        "Codigo_estudiante": null,
+        "Nombre_completo_estudiante": null,
+        "Numero_identificacion_estudiante": null,
+        "Consecutivo_tercero": 124,
+        "Nombre_completo_tercero": "SUCCESS JS S.A.S.",
+        "Numero_identificacion_tercero": "890.114,337-6",
+        "Observaciones": "Donacion /Somos Entidad Régimen Tributario Especial y autorretenedores de ICAS /acuerdo033/2020/ Bancolombia 20 de octubre",
+        "Codigo_cajero": "337567510624",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Valor_pagado": 1100000.0,
+        "Valor_pendiente": 0.0,
+        "Estado_factura": "Pagada",
+        "Anulada": false,
+        "Justificacion_anulacion": null,
+        "Paz_y_salvo": true,
+        "Direccion_factura": "CRA 65 N° 71-74 SAN FRANCISCO",
+        "Telefono_factura": "3145953083",
+        "Codigo_municipio_factura": "68001",
+        "Orden_compra": null,
+        "Fecha_vencimiento": null,
+        "Forma_pago": "Contado",
+        "Productos": [
+            {
+                "Consecutivo_periodo": 1037,
+                "Nombre_periodo": "2026-2",
+                "Codigo_producto": "admision 2015",
+                "Nombre_producto": "Donación",
+                "Valor_unidad": 1100000.0,
+                "Cantidad": 1,
+                "Consecutivo_descuento": null,
+                "Nombre_descuento": null,
+                "Valor_descuento": 0.0,
+                "Consecutivo_impuesto": null,
+                "Nombre_impuesto": null,
+                "Porcentaje_impuesto": 0.0,
+                "Valor_impuesto": 0.0,
+                "Valor_a_pagar": 1100000.0
+            }
+        ],
+        "Notas_credito": [],
+        "Retenciones": [],
+        "Pagos": [
+            {
+                "Numero_recibo_pago": 54527,
+                "Fecha_pago": "2026-10-21T13:44:11.877",
+                "Valor": 1100000.0,
+                "Estado_pago": "Pagado"
+            }
+        ]
     }
 ]

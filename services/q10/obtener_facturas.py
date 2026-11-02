@@ -2,27 +2,26 @@ from hooks.configuracion_APIs import obtener_url
 from api.q10.route import GET
 import json
 
-def obtener_facturas():
+
+
+def obtener_facturas(params):
+    # 1. Extraer los valores del diccionario
+     fecha_inicio = params.get("fecha_inicio", "")
+     fecha_fin = params.get("fecha_fin", "")
+     codigo_persona = params.get("codigo_persona", "")
+     consecutivo_tercero = params.get("consecutivo_tercero", "")
+     codigo_producto = params.get("codigo_producto", "")
+     estado = params.get("estado", "")
+     limite = params.get("limite", 100)
+     offset = params.get("offset", 0)
+
+
      url = obtener_url(
                     "q10",
                     "facturas"
             )
     
-        # Filtros de consulta
-     fecha_inicio = input(
-            "Fecha inicial (según formato de Q10, ENTER para omitir): "
-        ).strip()
-
-     fecha_fin = input(
-            "Fecha final (según formato de Q10, ENTER para omitir): "
-        ).strip()
-
-     codigo_persona = input("Código de persona (opcional): ").strip()
-     consecutivo_tercero = input("Consecutivo tercero (opcional): ").strip()
-     codigo_producto = input("Código de producto (opcional): ").strip()
-     estado = input("Estado (1 anulada, 2 pagada, 3 abonada, 4 pendiente): ").strip()
-     limite = input("Límite de registros (ENTER = 100): ").strip()
-     offset = input("Offset (ENTER = 0): ").strip()
+   
 
      if not codigo_persona and not consecutivo_tercero:
         if not fecha_inicio or not fecha_fin:

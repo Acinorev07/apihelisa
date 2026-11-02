@@ -1,6 +1,7 @@
 
 from hooks.limpiarPantalla import limpiar_pantalla
 from hooks.validar_terceros import validar_terceros
+import json
 
 
 def menu_manifold():
@@ -31,7 +32,11 @@ def menu_manifold():
 
                     for identificacion, informacion in nuevos.items():
                         print(f"\nIdentificación: {identificacion}")
-                        print(f"\nInformacion: {informacion}")
+                        print(f"\nInformacion: {json.dumps(
+                            informacion,
+                            indent=4,
+                            ensure_ascii=False
+                            )}")
                         print(f"Facturas asociadas: {len(informacion['facturas'])}")
 
                         for factura in informacion["facturas"]:
