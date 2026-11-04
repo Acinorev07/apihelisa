@@ -5,7 +5,20 @@ from hooks.obtener_estudiante_tercero import obtener_estudiante_tercero
 
 
 def validar_terceros():
-    datos = obtener_facturas()
+
+    params = {
+            "fecha_inicio" : "2026-10-29",
+            "fecha_fin" : "2026-10-29",
+            "codigo_persona" : "",
+            "consecutivo_tercero" : "",
+            "codigo_producto" : "",
+            "estado" : "2",
+            "limite" : 100,
+            "offset" : 0
+        }
+
+
+    datos = obtener_facturas(params=params)
 
     if datos is None:
         print("No fue posible obtener las facturas de Q10.")

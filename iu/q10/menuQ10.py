@@ -73,7 +73,11 @@ def menu_q10():
                     )
 
                 
-
+                print(json.dumps(
+                    response,
+                    indent=4,
+                    ensure_ascii=False
+                ))
 
                 # crear_archivo_json(
                 #    response=response,
