@@ -40,7 +40,7 @@ def obtener_tercero(consecutivo_tercero):
         return None
 
     if response.status_code == 200:
-        print("\nDetalle del estudiante:")
+        # print("\nDetalle del estudiante:")
         return respuesta
 
     return respuesta

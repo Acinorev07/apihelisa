@@ -3,7 +3,8 @@ from repositorio.llamadas import get
 from hooks.generarFirma import generar_firma
 import os 
 from dotenv import load_dotenv
-
+import requests
+from requests import post
 
 def GET(url, date=None):
 
@@ -71,15 +72,25 @@ def POST(url, json_data):
 
         response = post(
             url,
-            params=params
+            params=params,
+            timeout=30
         )
+
+        print(f"Código HTTP Helisa: {response.status_code}")
 
         return response
 
-    except Exception as e:
-        print(f"\nError en la ejecución: {str(e)}")
+    except requests.exceptions.Timeout:
+        print("Helisa tardó demasiado en responder.")
         return None
 
+    except requests.exceptions.RequestException as e:
+        print(f"Error de conexión con Helisa: {e}")
+        return None
+
+    except Exception as e:
+        print(f"Error en la ejecución: {e}")
+        return None
 
 
 def GET_TERCERO(url, payload, year, di, date):

@@ -817,5 +817,69 @@
                 "Estado_pago": "Pagado"
             }
         ]
+    },
+    {
+        "Numero_factura": "25812",
+        "Consecutivo_factura": 85289,
+        "Consecutivo_resolucion": 1015,
+        "Numero_resolucion": "18764114649811",
+        "Prefijo_resolucion": "FE",
+        "Fecha_factura": "2026-11-06T17:08:09.707",
+        "Fecha_resolucion": "2026-08-27T00:00:00",
+        "Fecha_anulacion": null,
+        "Consecutivo_periodo": 1038,
+        "Nombre_periodo": "2027-1",
+        "Valor_total": 36000.0,
+        "Codigo_estudiante": "115572744275",
+        "Nombre_completo_estudiante": "ANGIE PAOLA ORDUZ PEÑUELA",
+        "Numero_identificacion_estudiante": "1096701849",
+        "Consecutivo_tercero": null,
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Observaciones": "F1A/ CANCELA INSCRIPCION 2027-1/ EFECTIVO",
+        "Codigo_cajero": "332877545588",
+        "Numero_identificacion_cajero": "1098672731",
+        "Nombre_cajero": "Ludy Arenas Plata",
+        "Valor_pagado": 36000.0,
+        "Valor_pendiente": 0.0,
+        "Estado_factura": "Pagada",
+        "Anulada": false,
+        "Justificacion_anulacion": null,
+        "Paz_y_salvo": true,
+        "Direccion_factura": "CALLE 46 N° 10A-52 BARRIO EL CARMEN",
+        "Telefono_factura": null,
+        "Codigo_municipio_factura": "68276",
+        "Orden_compra": null,
+        "Fecha_vencimiento": null,
+        "Forma_pago": "Contado",
+        "Productos": [
+            {
+                "Consecutivo_periodo": 1038,
+                "Nombre_periodo": "2027-1",
+                "Codigo_producto": "INS2022",
+                "Nombre_producto": "Inscripción",
+                "Valor_unidad": 36000.0,
+                "Cantidad": 1,
+                "Consecutivo_descuento": null,
+                "Nombre_descuento": null,
+                "Valor_descuento": 0.0,
+                "Consecutivo_impuesto": null,
+                "Nombre_impuesto": null,
+                "Porcentaje_impuesto": 0.0,
+                "Valor_impuesto": 0.0,
+                "Valor_a_pagar": 36000.0
+            }
+        ],
+        "Notas_credito": [],
+        "Retenciones": [],
+        "Pagos": [
+            {
+                "Numero_recibo_pago": 54760,
+                "Fecha_pago": "2026-11-06T17:09:13.317",
+                "Valor": 36000.0,
+                "Estado_pago": "Pagado"
+            }
+        ]
     }
+
 ]

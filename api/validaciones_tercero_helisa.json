@@ -1,0 +1,17 @@
+{
+    "equivalencias_documentos" : {
+        "1": "C",
+        "70": "X",
+        "2": "T",
+        "13": "A"
+    },
+    "regimen_tag": {
+        "regimen comun": "C",
+        "gran contribuyente": "G",
+        "regimen simplificado": "S",
+        "entidad oficial": "O",
+        "especial": "E",
+        "persona natural": "P",
+        "profesional independiente": "I"
+    }
+}

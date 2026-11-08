@@ -7,8 +7,8 @@ from hooks.obtener_estudiante_tercero import obtener_estudiante_tercero
 def validar_terceros():
 
     params = {
-            "fecha_inicio" : "2026-10-29",
-            "fecha_fin" : "2026-10-29",
+            "fecha_inicio" : "2026-11-07",
+            "fecha_fin" : "2026-11-07",
             "codigo_persona" : "",
             "consecutivo_tercero" : "",
             "codigo_producto" : "",
@@ -157,5 +157,6 @@ def validar_terceros():
     print("Errores de consulta:", len(errores_consulta))
 
     return terceros_nuevos
+
 
 

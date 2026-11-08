@@ -26,8 +26,8 @@ def obtener_estudiante(codigo_estudiante, codigo_programa ):
         if codigo_programa and codigo_programa.lower() != "null":
             parametros["Codigo_programa"] = codigo_programa
 
-        print(f"\nURL solicitada: {url}")
-        print(f"Parámetros: {parametros}")
+        # print(f"\nURL solicitada: {url}")
+        # print(f"Parámetros: {parametros}")
 
         # Realizar la petición.
         response = GET(url, params=parametros)
@@ -46,7 +46,7 @@ def obtener_estudiante(codigo_estudiante, codigo_programa ):
             return None
 
         if response.status_code == 200:
-            print("\nDetalle del estudiante:")
+            # print("\nDetalle del estudiante:")
             return respuesta
 
         return respuesta
