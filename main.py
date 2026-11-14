@@ -26,7 +26,7 @@ def main():
                     menu_helisa()
 
                 except Exception as e:
-                        print(f"\nError en la ejecución: {str(e)}")
+                    print(f"\nError en la ejecución: {str(e)}")
 
             elif opcion == 2:
                 try:

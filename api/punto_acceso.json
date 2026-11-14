@@ -19,7 +19,9 @@
             "obtener_estudiante":"estudiantes",
             "obtener_programas":"programas",
             "obtener_terceros":"terceros",
-            "obtener_tercero":"terceros"
+            "obtener_tercero":"terceros",
+            "obtener_cursos":"cursos",
+            "obtener_productos":"productos"
         }
 
     }
