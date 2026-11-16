@@ -5,6 +5,7 @@ from services.q10.obtener_pago_creditos import obtener_pago_creditos
 from services.q10.obtener_estudiante import obtener_estudiante
 from services.q10.obtener_terceros import obtener_terceros
 from services.q10.obtener_tercero import obtener_tercero
+from services.q10.obtener_productos import obtener_productos
 from hooks.obtener_estudiante_tercero import obtener_estudiante_tercero
 from hooks.validarDi import validar_documento_tercero
 from hooks.crear_archivo_json import crear_archivo_json
@@ -30,7 +31,8 @@ def menu_q10():
             print("4: Obtener información estudiante.")
             print("5: Obtener todos los terceros registrados.")
             print("6: Obtener información tercero.")
-            print("7: Salir.")
+            print("7: Obtener productos.")
+            print("8: Salir.")
             
         
 
@@ -73,27 +75,29 @@ def menu_q10():
                     )
 
                 
-                print(json.dumps(
-                    response,
-                    indent=4,
-                    ensure_ascii=False
-                ))
+                # print(json.dumps(
+                #     response,
+                #     indent=4,
+                #     ensure_ascii=False
+                # ))
 
                 # crear_archivo_json(
                 #    response=response,
                 #    nombre_archivo="facturas_q10"
                 # )
+                print(f"Cantidad facturas: {len(response)}")
+                for factura in response:
+                    nombre = obtener_estudiante_tercero(
+                         "Nombre_completo_estudiante",
+                         "Nombre_completo_tercero",
+                         factura
+                    )
 
-                # for factura in response:
-                #     nombre = obtener_estudiante_tercero(
-                #          "Nombre_completo_estudiante",
-                #          "Nombre_completo_tercero",
-                #          factura
-                #     )
+                    fecha_factura = factura.get("Fecha_factura")
 
-                #     num_fecha = factura.get("Fecha_factura")
+                    for producto in factura["Productos"]:
                     
-                #     print(f" {nombre}")
+                        print(f"{fecha_factura}/{nombre}/{producto.get("Codigo_producto")}/{producto.get("Nombre_producto")}/{factura.get("Numero_factura")}/{producto.get("Valor_unidad")}/{factura.get("Valor_total")}/{producto.get("Valor_descuento")}/{producto.get("Valor_a_pagar")}/{len(factura["Notas_credito"])}/{len(factura["Pagos"])}/{producto.get("Nombre_periodo")}")
                     
 
                 input("\nPresiona ENTER para continuar...")
@@ -186,7 +190,66 @@ def menu_q10():
                 ))
 
                 input("\nPresiona ENTER para continuar...")
+
             elif opcion == 7:
+
+                try:
+                    estado = input(
+                        "Ingrese el estado del producto (true/false, ENTER = true): "
+                    ).strip()
+
+                    limite = input(
+                        "Límite de registros (ENTER = 100): "
+                    ).strip()
+
+                    offset = input(
+                        "Offset (ENTER = 0): "
+                    ).strip()
+
+                    parametros = {
+                        "Estado": estado or "true",
+                        "Limit": limite or 100,
+                        "Offset": offset or 0
+                    }
+
+                    resultado = obtener_productos(
+                        params=parametros
+                    )
+
+                    if resultado["ok"]:
+
+                        productos = resultado["respuesta"]
+
+                        print("\n========== PRODUCTOS Q10 ==========")
+
+                        if productos:
+
+                            for producto in productos:
+
+                                print(
+                                    f"{producto.get('Codigo')} | "
+                                    f"{producto.get('Nombre')} | "
+                                    f"Estado: {producto.get('Estado')} | "
+                                    f"Valor: {producto.get('Valor_neto')}"
+                                )
+
+                            print(f"\nTotal de productos: {len(productos)}")
+
+                        else:
+                            print("La consulta no devolvió productos.")
+
+                    else:
+
+                        print("\n========== ERROR EN CONSULTA ==========")
+                        print(f"Código: {resultado['status']}")
+                        print(f"Mensaje: {resultado['mensaje']}")
+
+                except Exception as e:
+                    print(f"\nError en el menú: {str(e)}")
+
+                input("\nPresiona ENTER para continuar...")
+
+            elif opcion == 8:
                 print("Saliendo del programa...")
                 break
             else:

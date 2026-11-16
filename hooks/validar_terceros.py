@@ -51,7 +51,7 @@ def validar_terceros():
             errores_consulta.append({
                 "factura": factura.get("Numero_factura"),
                 "motivo": "La factura no tiene fecha.",
-            })
+            })  
             continue
 
         fecha = fecha_original.split("T", 1)[0]

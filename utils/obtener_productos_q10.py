@@ -10,13 +10,10 @@ def obtener_productos_q10():
         "obtener_productos"
     )
 
-    estado = input("Ingrese el estado del programa, activo por defecto: ").strip()
+    estado = input("Ingrese el estado del producto (true/false): ").strip()
     limite = input("Límite de registros (ENTER = 100): ").strip()
 
     offset = input("Offset (ENTER = 0): ").strip()
-
-
-    incluir_pensum = input("¿Se debe incluir los pénsum asociados?: ").strip()
 
     parametros={}
 
@@ -26,11 +23,6 @@ def obtener_productos_q10():
 
         parametros["Limit"] = int(limite) if limite else 100
         parametros["Offset"] = int(offset) if offset else 0
-
-
-        if incluir_pensum:
-            parametros["incluir_pensum"] = incluir_pensum
-
 
     except ValueError:
         print("El límite y el offset deben ser números enteros.")

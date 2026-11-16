@@ -11,6 +11,7 @@
             "create_tercero":"/KansasWS/set/thirdParty2_0",
             "lista_documentos":"/KansasWS/get/listDocument",
             "summary_documento": "/KansasWS/summary/document"
+            
         },
         "q10":{
             "facturas":"facturas",
@@ -21,7 +22,8 @@
             "obtener_terceros":"terceros",
             "obtener_tercero":"terceros",
             "obtener_cursos":"cursos",
-            "obtener_productos":"productos"
+            "obtener_productos":"productos",
+            "detalle_pago_factura":"/pagos/{id}/facturas"
         }
 
     }

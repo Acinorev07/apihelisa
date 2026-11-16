@@ -27,6 +27,7 @@ def GET(url, params=None):
 
         return response
 
+
     except Exception as e:
         print(f"\nError en la ejecución: {e}")
         return None

@@ -1,6 +1,7 @@
 
 from hooks.build_tercero_q10_helisa import build_tercero_q10_helisa
 from hooks.configuracion_APIs import obtener_url
+from hooks.procesar_respuesta_helisa import procesar_respuesta_helisa
 from api.helisa.route import POST
 import json
 
@@ -117,42 +118,42 @@ def generar_terceros_q10_helisa(facturas):
     return resultado
 
 
-def procesar_respuesta_helisa(respuesta):
-    """
-    Normaliza la respuesta de Helisa.
-    """
+# def procesar_respuesta_helisa(respuesta):
+#     """
+#     Normaliza la respuesta de Helisa.
+#     """
 
-    # Si insertar() devuelve un diccionario,
-    # significa que ocurrió un error antes de recibir HTTP.
-    if isinstance(respuesta, dict):
+#     # Si insertar() devuelve un diccionario,
+#     # significa que ocurrió un error antes de recibir HTTP.
+#     if isinstance(respuesta, dict):
 
-        return {
-            "ok": False,
-            "status": respuesta.get("status", 500),
-            "mensaje": respuesta.get("mensaje", "Error desconocido.")
-        }
+#         return {
+#             "ok": False,
+#             "status": respuesta.get("status", 500),
+#             "mensaje": respuesta.get("mensaje", "Error desconocido.")
+#         }
 
-    status_code = respuesta.status_code
+#     status_code = respuesta.status_code
 
-    try:
-        contenido = respuesta.json()
+#     try:
+#         contenido = respuesta.json()
 
-    except ValueError:
-        contenido = respuesta.text
+#     except ValueError:
+#         contenido = respuesta.text
 
-    if 200 <= status_code < 300:
+#     if 200 <= status_code < 300:
 
-        return {
-            "ok": True,
-            "status": status_code,
-            "respuesta": contenido
-        }
+#         return {
+#             "ok": True,
+#             "status": status_code,
+#             "respuesta": contenido
+#         }
 
-    return {
-        "ok": False,
-        "status": status_code,
-        "respuesta": contenido
-    }
+#     return {
+#         "ok": False,
+#         "status": status_code,
+#         "respuesta": contenido
+#     }
 
 
 def enviar_terceros_q10_helisa(resultado_generacion):
