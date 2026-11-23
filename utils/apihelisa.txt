@@ -406,3 +406,345 @@ https://webconektaorquestador.helisa.com/v3/api-docs/legacy-api
 ]
 }
 },
+
+
+************************************************************************************************************************************************************************************************
+
+========== FACTURAS CON RECIBO ==========
+Total: 18
+Ingresos: 9
+Pasivos: 4
+Cartera: 0
+Sin_clasificar: 5
+
+========== FACTURAS SIN RECIBO ==========
+Total: 0
+Ingresos: 0
+Pasivos: 0
+Cartera: 0
+Sin_clasificar: 0
+
+========== RESUMEN GENERAL ==========
+Ingresos: 9
+Pasivos: 4
+Cartera: 0
+Sin_clasificar: 5
+{
+    "25946": {
+        "Numero_factura": "25946",
+        "Consecutivo_factura": 85423,
+        "Consecutivo_resolucion": 1015,
+        "Numero_resolucion": "18764114649811",
+        "Prefijo_resolucion": "FE",
+        "Fecha_factura": "2026-11-20T19:28:17.06",
+        "Fecha_resolucion": "2026-08-27T00:00:00",
+        "Fecha_anulacion": null,
+        "Consecutivo_periodo": 1037,
+        "Nombre_periodo": "2026-2",
+        "Valor_total": 35000.0,
+        "Codigo_estudiante": "111915502997",
+        "Nombre_completo_estudiante": "Maira Alejandra Solano Durán",
+        "Numero_identificacion_estudiante": "1095802607",
+        "Consecutivo_tercero": null,
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Observaciones": "E3/A/REALIZA ABONO A TOGA/INGRESOS RECIBIDOS PARA TERCEROS/BANCO 20 NOV",
+        "Codigo_cajero": "337567510624",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Valor_pagado": 35000.0,
+        "Valor_pendiente": 0.0,
+        "Estado_factura": "Pagada",
+        "Anulada": false,
+        "Justificacion_anulacion": null,
+        "Paz_y_salvo": true,
+        "Direccion_factura": "Calle 16B #4w-23",
+        "Telefono_factura": "3005963725",
+        "Codigo_municipio_factura": "68547",
+        "Orden_compra": null,
+        "Fecha_vencimiento": null,
+        "Forma_pago": "Contado",
+        "Productos": [
+            {
+                "Consecutivo_periodo": 1037,
+                "Nombre_periodo": "2026-2",
+                "Codigo_producto": "AT",
+                "Nombre_producto": "Toga (Ceremonia de Grado)",
+                "Valor_unidad": 35000.0,
+                "Cantidad": 1,
+                "Consecutivo_descuento": null,
+                "Nombre_descuento": null,
+                "Valor_descuento": 0.0,
+                "Consecutivo_impuesto": null,
+                "Nombre_impuesto": null,
+                "Porcentaje_impuesto": 0.0,
+                "Valor_impuesto": 0.0,
+                "Valor_a_pagar": 35000.0
+            }
+        ],
+        "Notas_credito": [],
+        "Retenciones": [],
+        "Pagos": [
+            {
+                "Numero_recibo_pago": 54947,
+                "Fecha_pago": "2026-11-20T19:28:49.24",
+                "Valor": 35000.0,
+                "Estado_pago": "Pagado"
+            }
+        ]
+    },
+    "25939": {
+        "Numero_factura": "25939",
+        "Consecutivo_factura": 85416,
+        "Consecutivo_resolucion": 1015,
+        "Numero_resolucion": "18764114649811",
+        "Prefijo_resolucion": "FE",
+        "Fecha_factura": "2026-11-20T14:33:35.67",
+        "Fecha_resolucion": "2026-08-27T00:00:00",
+        "Fecha_anulacion": null,
+        "Consecutivo_periodo": 1037,
+        "Nombre_periodo": "2026-2",
+        "Valor_total": 35000.0,
+        "Codigo_estudiante": "115068046275",
+        "Nombre_completo_estudiante": "DANIELA APARICIO PULIDO",
+        "Numero_identificacion_estudiante": "1099738654",
+        "Consecutivo_tercero": null,
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Observaciones": "F3/C/REALIZA ABONO TOGA/INGRESOS RECIBIDOS PARA TERCEROS/BANCO 20 NOV",
+        "Codigo_cajero": "337567510624",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Valor_pagado": 35000.0,
+        "Valor_pendiente": 0.0,
+        "Estado_factura": "Pagada",
+        "Anulada": false,
+        "Justificacion_anulacion": null,
+        "Paz_y_salvo": true,
+        "Direccion_factura": "Calle 1B 24-04, Transición 5",
+        "Telefono_factura": "0",
+        "Codigo_municipio_factura": "68001",
+        "Orden_compra": null,
+        "Fecha_vencimiento": null,
+        "Forma_pago": "Contado",
+        "Productos": [
+            {
+                "Consecutivo_periodo": 1037,
+                "Nombre_periodo": "2026-2",
+                "Codigo_producto": "AT",
+                "Nombre_producto": "Toga (Ceremonia de Grado)",
+                "Valor_unidad": 35000.0,
+                "Cantidad": 1,
+                "Consecutivo_descuento": null,
+                "Nombre_descuento": null,
+                "Valor_descuento": 0.0,
+                "Consecutivo_impuesto": null,
+                "Nombre_impuesto": null,
+                "Porcentaje_impuesto": 0.0,
+                "Valor_impuesto": 0.0,
+                "Valor_a_pagar": 35000.0
+            }
+        ],
+        "Notas_credito": [],
+        "Retenciones": [],
+        "Pagos": [
+            {
+                "Numero_recibo_pago": 54936,
+                "Fecha_pago": "2026-11-20T14:34:06.823",
+                "Valor": 35000.0,
+                "Estado_pago": "Pagado"
+            }
+        ]
+    },
+    "25937": {
+        "Numero_factura": "25937",
+        "Consecutivo_factura": 85414,
+        "Consecutivo_resolucion": 1015,
+        "Numero_resolucion": "18764114649811",
+        "Prefijo_resolucion": "FE",
+        "Fecha_factura": "2026-11-20T12:48:06.82",
+        "Fecha_resolucion": "2026-08-27T00:00:00",
+        "Fecha_anulacion": null,
+        "Consecutivo_periodo": 1037,
+        "Nombre_periodo": "2026-2",
+        "Valor_total": 35000.0,
+        "Codigo_estudiante": "119291942353",
+        "Nombre_completo_estudiante": "DIEGO ALEXANDER VELANDIA GUEVARA",
+        "Numero_identificacion_estudiante": "1005235240",
+        "Consecutivo_tercero": null,
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Observaciones": "E3/C/REALIZA ABONO A TOGA/INGRESOS RECIBIDOS PARA TERCEROS/BANCO 19 NOV",
+        "Codigo_cajero": "337567510624",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Valor_pagado": 35000.0,
+        "Valor_pendiente": 0.0,
+        "Estado_factura": "Pagada",
+        "Anulada": false,
+        "Justificacion_anulacion": null,
+        "Paz_y_salvo": true,
+        "Direccion_factura": "Calle 63 #13b - 26",
+        "Telefono_factura": "0",
+        "Codigo_municipio_factura": "68001",
+        "Orden_compra": null,
+        "Fecha_vencimiento": null,
+        "Forma_pago": "Contado",
+        "Productos": [
+            {
+                "Consecutivo_periodo": 1037,
+                "Nombre_periodo": "2026-2",
+                "Codigo_producto": "AT",
+                "Nombre_producto": "Toga (Ceremonia de Grado)",
+                "Valor_unidad": 35000.0,
+                "Cantidad": 1,
+                "Consecutivo_descuento": null,
+                "Nombre_descuento": null,
+                "Valor_descuento": 0.0,
+                "Consecutivo_impuesto": null,
+                "Nombre_impuesto": null,
+                "Porcentaje_impuesto": 0.0,
+                "Valor_impuesto": 0.0,
+                "Valor_a_pagar": 35000.0
+            }
+        ],
+        "Notas_credito": [],
+        "Retenciones": [],
+        "Pagos": [
+            {
+                "Numero_recibo_pago": 54934,
+                "Fecha_pago": "2026-11-20T12:48:23.967",
+                "Valor": 35000.0,
+                "Estado_pago": "Pagado"
+            }
+        ]
+    },
+    "25931": {
+        "Numero_factura": "25931",
+        "Consecutivo_factura": 85408,
+        "Consecutivo_resolucion": 1015,
+        "Numero_resolucion": "18764114649811",
+        "Prefijo_resolucion": "FE",
+        "Fecha_factura": "2026-11-20T11:32:16.733",
+        "Fecha_resolucion": "2026-08-27T00:00:00",
+        "Fecha_anulacion": null,
+        "Consecutivo_periodo": 1037,
+        "Nombre_periodo": "2026-2",
+        "Valor_total": 70000.0,
+        "Codigo_estudiante": "119876611146",
+        "Nombre_completo_estudiante": "CRISTIAN CAMILO GUTIERREZ ALDANA",
+        "Numero_identificacion_estudiante": "1073700588",
+        "Consecutivo_tercero": null,
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Observaciones": "C2/CANCELA TOGA/INGRESO RECIBIDO PARA TERCEROS/MANEJO MAQUINAS/EFECTIVO ",
+        "Codigo_cajero": "331479702178",
+        "Numero_identificacion_cajero": "1005323954",
+        "Nombre_cajero": "KEINER JAVIER TORRES TRUJILLO",
+        "Valor_pagado": 70000.0,
+        "Valor_pendiente": 0.0,
+        "Estado_factura": "Pagada",
+        "Anulada": false,
+        "Justificacion_anulacion": null,
+        "Paz_y_salvo": true,
+        "Direccion_factura": "Transversal 7b#109b-09 barrio marianela parte baja ",
+        "Telefono_factura": "3134463262",
+        "Codigo_municipio_factura": "68001",
+        "Orden_compra": null,
+        "Fecha_vencimiento": null,
+        "Forma_pago": "Contado",
+        "Productos": [
+            {
+                "Consecutivo_periodo": 1037,
+                "Nombre_periodo": "2026-2",
+                "Codigo_producto": "AT",
+                "Nombre_producto": "Toga (Ceremonia de Grado)",
+                "Valor_unidad": 70000.0,
+                "Cantidad": 1,
+                "Consecutivo_descuento": null,
+                "Nombre_descuento": null,
+                "Valor_descuento": 0.0,
+                "Consecutivo_impuesto": null,
+                "Nombre_impuesto": null,
+                "Porcentaje_impuesto": 0.0,
+                "Valor_impuesto": 0.0,
+                "Valor_a_pagar": 70000.0
+            }
+        ],
+        "Notas_credito": [],
+        "Retenciones": [],
+        "Pagos": [
+            {
+                "Numero_recibo_pago": 54927,
+                "Fecha_pago": "2026-11-20T11:32:31.61",
+                "Valor": 70000.0,
+                "Estado_pago": "Pagado"
+            }
+        ]
+    },
+    "25929": {
+        "Numero_factura": "25929",
+        "Consecutivo_factura": 85406,
+        "Consecutivo_resolucion": 1015,
+        "Numero_resolucion": "18764114649811",
+        "Prefijo_resolucion": "FE",
+        "Fecha_factura": "2026-11-20T08:49:39.39",
+        "Fecha_resolucion": "2026-08-27T00:00:00",
+        "Fecha_anulacion": null,
+        "Consecutivo_periodo": 1037,
+        "Nombre_periodo": "2026-2",
+        "Valor_total": 35000.0,
+        "Codigo_estudiante": "111028180885",
+        "Nombre_completo_estudiante": "DERLY DAYANNA BOHORQUEZ RODRIGUEZ",
+        "Numero_identificacion_estudiante": "1095958496",
+        "Consecutivo_tercero": null,
+        "Nombre_completo_tercero": null,
+        "Numero_identificacion_tercero": null,
+        "Observaciones": "SO3/C/REALIZA ABONO A TOGA/INGRESOS RECIBIDOS PARA TERCEROS/BANCO 20 NOV",
+        "Codigo_cajero": "337567510624",
+        "Numero_identificacion_cajero": "1098611372",
+        "Nombre_cajero": "LIZETH LORENA REATIGA GUERRERO",
+        "Valor_pagado": 35000.0,
+        "Valor_pendiente": 0.0,
+        "Estado_factura": "Pagada",
+        "Anulada": false,
+        "Justificacion_anulacion": null,
+        "Paz_y_salvo": true,
+        "Direccion_factura": "CLL 39 # 19 - 08",
+        "Telefono_factura": "0",
+        "Codigo_municipio_factura": "68001",
+        "Orden_compra": null,
+        "Fecha_vencimiento": null,
+        "Forma_pago": "Contado",
+        "Productos": [
+            {
+                "Consecutivo_periodo": 1037,
+                "Nombre_periodo": "2026-2",
+                "Codigo_producto": "AT",
+                "Nombre_producto": "Toga (Ceremonia de Grado)",
+                "Valor_unidad": 35000.0,
+                "Cantidad": 1,
+                "Consecutivo_descuento": null,
+                "Nombre_descuento": null,
+                "Valor_descuento": 0.0,
+                "Consecutivo_impuesto": null,
+                "Nombre_impuesto": null,
+                "Porcentaje_impuesto": 0.0,
+                "Valor_impuesto": 0.0,
+                "Valor_a_pagar": 35000.0
+            }
+        ],
+        "Notas_credito": [],
+        "Retenciones": [],
+        "Pagos": [
+            {
+                "Numero_recibo_pago": 54924,
+                "Fecha_pago": "2026-11-20T08:49:54.55",
+                "Valor": 35000.0,
+                "Estado_pago": "Pagado"
+            }
+        ]
+    }
+}
+
+Presiona ENTER para continuar...

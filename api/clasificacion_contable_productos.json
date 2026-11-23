@@ -73,6 +73,7 @@
         "INS2022": "Inscripción",
         "SVBMDEA": "LEBRIJA 4528 - CURSO SOPORTE VITAL BASICO Y MANEJO DEL DEA",
         "MARKE": "MARKETING DIGITAL",
+        "TIC":"Módulo: Tics",
         "AD01": "Módulo: Administración de Medicamentos",
         "ACT HUMANIZACION EN": "Módulo: Almacenamiento y Conservación de Productos Terminados",
         "MAD": "Modulo: Apoyo al Diagnostico",
@@ -152,7 +153,8 @@
         "BB": "Uniforme: Bata Bioseguridad",
         "UD": "Uniforme: Delantal",
         "UNIFORME DIARIO": "Uniforme: Diario",
-        "VPADLP": "Venta de Pan en Alto de los Padres"
+        "VPADLP": "Venta de Pan en Alto de los Padres",
+        "AT":"Toga (Ceremonia de Grado)"
     },
     "cuentas_contables": {
         "270546": "Ingresos recibidos por anticipado - técnico primer semestre",
@@ -317,7 +319,9 @@
         "BB": "42959501",
         "UD": "42959501",
         "UNIFORME DIARIO": "42959501",
-        "VPADLP": "42959501"
+        "VPADLP": "42959501",
+        "AT":"41600516",
+        "TIC":"41600511"
     },
     "producto-cuenta-2": {
         "CC": "270546",
@@ -348,5 +352,31 @@
         "BB": "28160608",
         "UD": "28150608",
         "UNIFORME DIARIO": "28150608"
+    },
+    "centro_costos":{
+        "E1":"060101",
+        "E2":"060102",
+        "E3":"060103",
+        "F1":"060201",
+        "F2":"060202",
+        "F3":"060203",
+        "SO1":"060301",
+        "SO2":"060302",
+        "SO3":"060303",
+        "PI1":"060401",
+        "PI2":"060402",
+        "PI3":"060403",
+        "AS1":"060501",
+        "AS2":"060502",
+        "AS3":"060503",
+        "formacion laboral":"020101",
+        "DONACION":"050102",
+        "CF1":"060801",
+        "CF2":"060802",
+        "C1":"061001",
+        "C2":"061002",
+        "COMUNES EDUCACION":"062001"
+
+
     }
 }

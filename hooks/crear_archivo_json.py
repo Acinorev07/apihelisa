@@ -23,11 +23,11 @@ def crear_archivo_json(response, nombre_archivo):
 
         print("\nArchivo facturas_q10.json guardado correctamente.")
 
-        print(json.dumps(
-            response,
-            indent=4,
-            ensure_ascii=False
-        ))
+        # print(json.dumps(
+        #     response,
+        #     indent=4,
+        #     ensure_ascii=False
+        # ))
 
     else:
         print("No fue posible obtener las facturas.")

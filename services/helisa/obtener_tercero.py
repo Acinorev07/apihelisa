@@ -27,7 +27,7 @@ def obtener_tercero(fecha, docId):
     # Extraer el año para consultar Helisa
     year = fecha_seleccionada.year
 
-    print("Año de consulta:", year)
+    # print("Año de consulta:", year)
 
 
     date = dateMillisec(fecha)
@@ -48,8 +48,8 @@ def obtener_tercero(fecha, docId):
         )
             
     if response is not None:
-        print("\nCódigo HTTP:", response.status_code)
-        print("\nRespuesta de Helisa:")
+        # print("\nCódigo HTTP:", response.status_code)
+        # print("\nRespuesta de Helisa:")
      
         return response
 

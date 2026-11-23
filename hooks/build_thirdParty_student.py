@@ -103,7 +103,7 @@ def build_thirdParty_student(response, year_est):
                 "value": 0
             },
             "firstLastName": primer_apellido,
-            "name": nombre_completo,
+            "name": nombre_completo.upper(),
             "id": documento_identidad,
             "checkDigit": "",
             "regimen": {

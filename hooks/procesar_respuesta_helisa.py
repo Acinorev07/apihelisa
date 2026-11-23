@@ -1,5 +1,6 @@
 
 
+
 def procesar_respuesta_helisa(respuesta):
     """
     Normaliza la respuesta de Helisa.
@@ -22,6 +23,23 @@ def procesar_respuesta_helisa(respuesta):
 
     except ValueError:
         contenido = respuesta.text
+
+    # NUEVO: verificar si Helisa devuelve un error
+    # dentro del contenido, incluso con HTTP 202.
+    if isinstance(contenido, dict) and "error" in contenido:
+
+        error = contenido["error"]
+
+        return {
+            "ok": False,
+            "status": status_code,
+            "respuesta": contenido,
+            "mensaje": error.get(
+                "message",
+                "Helisa rechazó los datos."
+            ),
+            "campos": error.get("fields", [])
+        }
 
     if 200 <= status_code < 300:
 
