@@ -264,78 +264,205 @@ def validar_tercero_helisa(respuesta, identificacion):
 
 
 
+
+
+from services.helisa.obtener_dcto_helisa import obtener_dcto_helisa
+from datetime import datetime
+
+
+def generar_documento_helisa():
+
+    fecha_inicial = "2026-11-01"
+    fecha_final = "2026-11-30"
+    tipo_documento = "NIED"
+    accounting_type = 0
+
+    historial_documento_helisa = obtener_dcto_helisa(
+        fecha_inicial=fecha_inicial,
+        fecha_final=fecha_final,
+        document_type=tipo_documento,
+        accounting_type=accounting_type
+    )
+
+    if not historial_documento_helisa:
+        print("No se encontraron documentos.")
+        return
+
+    # Extraemos la lista de documentos del diccionario.
+    documentos = historial_documento_helisa.get("documents", [])
+
+    if not documentos:
+        print("No se encontraron documentos.")
+        return
+
+    numero_documento = []
+
+    for registro in documentos:
+
+        numero = registro.get("document", {}).get("number")
+
+        if numero is not None:
+            numero_documento.append(numero)
+
+    if not numero_documento:
+        print("No se encontraron números de documentos.")
+        return
+
+    # Convertimos a entero para comparar los consecutivos numéricamente.
+    ultimo_documento = max(
+        numero_documento,
+        key=lambda numero: int(numero)
+    )
+
+    print("Último documento:", ultimo_documento)
+
+    # Buscamos la fecha correspondiente al documento máximo.
+    for registro in documentos:
+
+        numero = registro.get("document", {}).get("number")
+
+        if numero == ultimo_documento:
+
+            dia = registro.get("date", {}).get("day")
+            mes = registro.get("date", {}).get("month")
+            año = registro.get("date", {}).get("year")
+
+            fecha_documento = datetime(año, mes, dia)
+
+            print("Fecha del último documento:", fecha_documento)
+            break
+
+    siguiente_documento = str(int(ultimo_documento) + 1).zfill(8)
+
+    print("Último documento:", ultimo_documento)
+    print("Siguiente documento:", siguiente_documento)
+
+
+
+from hooks.configuracion_APIs import obtener_url
+from api.q10.route import GET
+
+
+def obtener_recibo_pago_factura(id_pago):
+
+    url = obtener_url(
+        "q10",
+        "detalle_pago_factura"
+    )
+
+    print(f"url: {url}")
+
+    
+
+    url_enviar = url.format(id=int(id_pago))
+
+    print(f"url: {url_enviar}")
+
+    response = GET(url_enviar)
+
+    return response.json()
+
+
 if __name__ == "__main__":
+    # generar_documento_helisa()
+    id_pago = 54909
 
-    facturas = cargar_archivo(
-        "todas_las_facturas_q10.json"
-    )
+    respuesta = obtener_recibo_pago_factura(id_pago)
 
-    errores_consulta = []
-    terceros_correctos = []
 
-    identificaciones = set()
+    print(json.dumps(
+        respuesta,
+        indent=4,
+        ensure_ascii=False
+    ))
 
-    # Obtener identificaciones únicas
-    for factura in facturas:
 
-        id_tercero = obtener_estudiante_tercero(
-            "Numero_identificacion_estudiante",
-            "Numero_identificacion_tercero",
-            factura
-        )
 
-        identificacion = validar_documento_tercero(id_tercero)
+    # facturas = cargar_archivo(
+    #     "todas_las_facturas_q10.json"
+    # )
 
-        if identificacion:
-            identificaciones.add(identificacion)
+    # # errores_consulta = []
+    # # terceros_correctos = []
 
-    print(f"Identificaciones únicas: {len(identificaciones)}")
+    # # identificaciones = set()
 
-    # Consultar cada tercero una sola vez
-    fecha = "2026-11-21"
+    # # Obtener identificaciones únicas
+    # for factura in facturas:
+    #     numero_factura = factura.get("Numero_factura")
+    #     if len(factura["Productos"]) >= 2:
 
-    for identificacion in identificaciones:
+    #         print(factura.get("Numero_factura"))
 
-        try:
-            respuesta_http = obtener_tercero(
-                fecha,
-                identificacion
-            )
 
-            resultado = validar_tercero_helisa(
-                respuesta=respuesta_http,
-                identificacion=identificacion
-            )
+    #     if numero_factura == "25915":
 
-        except Exception as error:
+    #         print(json.dumps(
+    #             factura,
+    #             indent=4,
+    #             ensure_ascii=False
+    #         ))
 
-            errores_consulta.append({
-                "identificacion": identificacion,
-                "motivo": str(error)
-            })
 
-            continue
 
-        if resultado["status"] != 200:
-            errores_consulta.append(resultado)
+    #     id_tercero = obtener_estudiante_tercero(
+    #         "Numero_identificacion_estudiante",
+    #         "Numero_identificacion_tercero",
+    #         factura
+    #     )
 
-        else:
-            terceros_correctos.append(resultado)
+    #     identificacion = validar_documento_tercero(id_tercero)
 
-    print("\nRESUMEN DE CONSULTAS")
-    print(f"Identificaciones consultadas: {len(identificaciones)}")
-    print(f"Terceros correctos: {len(terceros_correctos)}")
-    print(f"Errores de consulta: {len(errores_consulta)}")
+    #     if identificacion:
+    #         identificaciones.add(identificacion)
 
-    crear_archivo_json(
-        response=errores_consulta,
-        nombre_archivo="Errores consulta.json"
-    )
+    # print(f"Identificaciones únicas: {len(identificaciones)}")
 
-    crear_archivo_json(
-        response=terceros_correctos,
-        nombre_archivo="Terceros correctos.json"
-    )
+    # # Consultar cada tercero una sola vez
+    # fecha = "2026-11-21"
+
+    # for identificacion in identificaciones:
+
+    #     try:
+    #         respuesta_http = obtener_tercero(
+    #             fecha,
+    #             identificacion
+    #         )
+
+    #         resultado = validar_tercero_helisa(
+    #             respuesta=respuesta_http,
+    #             identificacion=identificacion
+    #         )
+
+    #     except Exception as error:
+
+    #         errores_consulta.append({
+    #             "identificacion": identificacion,
+    #             "motivo": str(error)
+    #         })
+
+    #         continue
+
+    #     if resultado["status"] != 200:
+    #         errores_consulta.append(resultado)
+
+    #     else:
+    #         terceros_correctos.append(resultado)
+
+    # print("\nRESUMEN DE CONSULTAS")
+    # print(f"Identificaciones consultadas: {len(identificaciones)}")
+    # print(f"Terceros correctos: {len(terceros_correctos)}")
+    # print(f"Errores de consulta: {len(errores_consulta)}")
+
+    # crear_archivo_json(
+    #     response=errores_consulta,
+    #     nombre_archivo="Errores consulta.json"
+    # )
+
+    # crear_archivo_json(
+    #     response=terceros_correctos,
+    #     nombre_archivo="Terceros correctos.json"
+    # )
 
 
     # for tercero in terceros_correctos:

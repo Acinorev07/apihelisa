@@ -53,26 +53,29 @@ def GET(url, date=None):
 
 def POST(url, json_data):
     try:
-
         # Busca el archivo .env desde la raíz del proyecto
-        load_dotenv()  
-        
+        load_dotenv()
+
         key = os.environ["HELISA_API_KEY"]
         client_id = os.environ["HELISA_CLIENT_ID"]
 
+        # Generar firma sobre el JSON completo
         sign = generar_firma(
             key,
             json_data
         )
-        params = {
+
+        # Parámetros que se enviarán en el cuerpo de la petición
+        data = {
             "json": json_data,
             "id": client_id,
             "sign": sign
         }
 
+        # Enviar mediante POST en el cuerpo, no en la URL
         response = post(
             url,
-            params=params,
+            data=data,
             timeout=30
         )
 

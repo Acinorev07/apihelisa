@@ -1,1 +1,0 @@
-# Consulta y organiza los pagos de Q10

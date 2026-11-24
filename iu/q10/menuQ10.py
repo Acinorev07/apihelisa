@@ -87,18 +87,24 @@ def menu_q10():
                 # )
                 print(f"Cantidad facturas: {len(response)}")
                 for factura in response:
-                    nombre = obtener_estudiante_tercero(
-                         "Nombre_completo_estudiante",
-                         "Nombre_completo_tercero",
-                         factura
-                    )
+                    # nombre = obtener_estudiante_tercero(
+                    #      "Nombre_completo_estudiante",
+                    #      "Nombre_completo_tercero",
+                    #      factura
+                    # )
 
-                    fecha_factura = factura.get("Fecha_factura")
+                    # fecha_factura = factura.get("Fecha_factura")
 
-                    for producto in factura["Productos"]:
+                    # for producto in factura["Productos"]:
+                    numero_factura = factura.get("Numero_factura")
+                    #     print(f"{fecha_factura}/{nombre}/{producto.get("Codigo_producto")}/{producto.get("Nombre_producto")}/{factura.get("Numero_factura")}/{producto.get("Valor_unidad")}/{factura.get("Valor_total")}/{producto.get("Valor_descuento")}/{producto.get("Valor_a_pagar")}/{len(factura["Notas_credito"])}/{len(factura["Pagos"])}/{producto.get("Nombre_periodo")}")
+                    if numero_factura == "25915":
                     
-                        print(f"{fecha_factura}/{nombre}/{producto.get("Codigo_producto")}/{producto.get("Nombre_producto")}/{factura.get("Numero_factura")}/{producto.get("Valor_unidad")}/{factura.get("Valor_total")}/{producto.get("Valor_descuento")}/{producto.get("Valor_a_pagar")}/{len(factura["Notas_credito"])}/{len(factura["Pagos"])}/{producto.get("Nombre_periodo")}")
-                    
+                                print(json.dumps(
+                                    factura,
+                                    indent=4,
+                                    ensure_ascii=False
+                                ))
 
                 input("\nPresiona ENTER para continuar...")
 

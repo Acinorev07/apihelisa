@@ -2,7 +2,7 @@ from hooks.configuracion_APIs import obtener_url
 import json
 from api.helisa.route import POST
 
-def insertar_documento():
+def insertar_documento(documento):
     print("\n===== INSERTAR DOCUMENTO =====")
     
     url = obtener_url(
@@ -10,109 +10,109 @@ def insertar_documento():
             "document"
         )
     
-    tipo = input("Tipo de documento: ")
-    numero = input("Número del documento: ")
+    # tipo = input("Tipo de documento: ")
+    # numero = input("Número del documento: ")
     
-    fecha = input(
-        "Fecha (DD/MM/YYYY): "
-    )
+    # fecha = input(
+    #     "Fecha (DD/MM/YYYY): "
+    # )
 
-    nit = input(
-        "NIT del tercero: "
-    )
+    # nit = input(
+    #     "NIT del tercero: "
+    # )
 
-    cuenta_debito = input(
-        "Cuenta débito [41600509]: "
-    )
+    # cuenta_debito = input(
+    #     "Cuenta débito [41600509]: "
+    # )
 
-    cuenta_credito = input(
-        "Cuenta crédito [110505]: "
-    )
+    # cuenta_credito = input(
+    #     "Cuenta crédito [110505]: "
+    # )
 
-    valor = int(
-        input("Valor: ")
-    )
+    # valor = int(
+    #     input("Valor: ")
+    # )
 
-    # --------------------------------
-    # Convertir fecha
-    # --------------------------------
+    # # --------------------------------
+    # # Convertir fecha
+    # # --------------------------------
 
-    dia, mes, anio = map(
-        int,
-        fecha.split("/")
-    )
+    # dia, mes, anio = map(
+    #     int,
+    #     fecha.split("/")
+    # )
 
-    # --------------------------------
-    # Construir documento
-    # --------------------------------
+    # # --------------------------------
+    # # Construir documento
+    # # --------------------------------
 
-    documento = {
+    # documento = {
 
-        "document": {
+    #     "document": {
 
-            "date": {
-                "day": dia,
-                "month": mes,
-                "year": anio
-            },
+    #         "date": {
+    #             "day": dia,
+    #             "month": mes,
+    #             "year": anio
+    #         },
 
-            "document": {
-                "type": tipo,
-                "number": numero
-            },
+    #         "document": {
+    #             "type": tipo,
+    #             "number": numero
+    #         },
 
-            "transactions": [
+    #         "transactions": [
 
-                {
-                    "nature": {
-                        "tag": "D"
-                    },
+    #             {
+    #                 "nature": {
+    #                     "tag": "D"
+    #                 },
 
-                    "costCenter": "061002",
+    #                 "costCenter": "061002",
 
-                    "concept": "Prueba API Helisa",
+    #                 "concept": "Prueba API Helisa",
 
-                    "accountingClass": {
-                        "value": 0
-                    },
+    #                 "accountingClass": {
+    #                     "value": 0
+    #                 },
 
-                    "value": valor,
+    #                 "value": valor,
 
-                    "idThirdParty": nit,
+    #                 "idThirdParty": nit,
 
-                    "account": cuenta_debito,
+    #                 "account": cuenta_debito,
 
-                    "userCode": 1,
+    #                 "userCode": 1,
 
-                    "taxBase": 0
-                },
+    #                 "taxBase": 0
+    #             },
 
-                {
-                    "nature": {
-                        "tag": "C"
-                    },
+    #             {
+    #                 "nature": {
+    #                     "tag": "C"
+    #                 },
 
-                    "costCenter": "061002",
+    #                 "costCenter": "061002",
 
-                    "concept": "Prueba API Helisa",
+    #                 "concept": "Prueba API Helisa",
 
-                    "accountingClass": {
-                        "value": 0
-                    },
+    #                 "accountingClass": {
+    #                     "value": 0
+    #                 },
 
-                    "value": valor,
+    #                 "value": valor,
 
-                    "idThirdParty": nit,
+    #                 "idThirdParty": nit,
 
-                    "account": cuenta_credito,
+    #                 "account": cuenta_credito,
 
-                    "userCode": 1,
+    #                 "userCode": 1,
 
-                    "taxBase": 0
-                }
-            ]
-        }
-    }
+    #                 "taxBase": 0
+    #             }
+    #         ]
+    #     }
+    # }
 
     # --------------------------------
     # Convertir Python → JSON

@@ -8,6 +8,8 @@ from services.manifold.generar_tercero_q10_helisa import (
     enviar_terceros_q10_helisa
 )
 from services.q10.obtener_facturas import obtener_facturas
+from services.manifold.generar_documeto_helisa import generar_documento_helisa
+from services.helisa.insertar_documento import insertar_documento
 from hooks.obtener_archivo_json import cargar_archivo
 from hooks.obtener_estudiante_tercero import obtener_estudiante_tercero
 from hooks.validarDi import validar_documento_tercero
@@ -15,6 +17,7 @@ from hooks.validar_existencia_recibo_en_factura import validar_existencia_recibo
 from hooks.validar_cuenta_factura import validar_cuenta_factura
 import json
 import traceback
+from datetime import datetime
 
 def menu_manifold():
 
@@ -48,7 +51,7 @@ def menu_manifold():
             print("6: Validar pasivo tercero.")
             print("7: Validar cartera tercero.")
             print("8: Crear documento contable.")
-            print("7: Salir")
+            print("9: Salir")
             
 
             opcion = int(input("Opcion: "))
@@ -590,6 +593,16 @@ def menu_manifold():
                 limpiar_pantalla()
 
 
+
+
+
+                input("\nPresiona ENTER para continuar...")
+
+
+     
+            elif opcion == 8:
+                limpiar_pantalla()
+
                 if clasificacion_con_recibo is None:
                     print(
                         "\nPrimero debes ejecutar la opción 5 "
@@ -597,28 +610,70 @@ def menu_manifold():
                     )
 
                 else:
-
                     facturas_pasivos = clasificacion_con_recibo.get(
                         "pasivos", {}
                     )
 
                     facturas_ingresos = clasificacion_con_recibo.get(
-                        "ingresos",{}
+                        "ingresos", {}
                     )
 
+                    # La cartera queda separada.
+                    facturas_cartera = {}
+
+                    if clasificacion_sin_recibo is not None:
+                        facturas_cartera = clasificacion_sin_recibo.get(
+                            "cartera", {}
+                        )
+
+                    # Un solo documento con ingresos y pasivos.
+                    facturas_contabilizar = []
+
+                    facturas_contabilizar.extend(
+                        facturas_ingresos.values()
+                    )
+
+                    facturas_contabilizar.extend(
+                        facturas_pasivos.values()
+                    )
+
+                    if not facturas_contabilizar:
+                        print("\nNo hay facturas para contabilizar.")
+
+                    else:
+                        try:
+                            documento = generar_documento_helisa(
+                                facturas_contabilizar
+                            )
+
+                            print("\nDOCUMENTO GENERADO:")
+                            print(
+                                json.dumps(
+                                    documento,
+                                    indent=4,
+                                    ensure_ascii=False
+                                )
+                            )
 
 
-                documento = generar_documento_helisa(facturas_pasivos, facturas_ingresos)
+                            if not documento:
+                                print("\nNo hay documento para enviar.")
+
+                            else:
+
+                                confirmacion = input(
+                                    "\n¿Deseas enviar documento a Helisa? (S/N): "
+                                ).strip().upper()
+
+                                if confirmacion == "S":
+
+                                    insertar_documento(documento=documento)
 
 
-                input("\nPresiona ENTER para continuar...")
 
-            elif opcion == 8:
-                limpiar_pantalla()
-
-
-                     
-
+                        except Exception as error:
+                            print("\nNo fue posible generar el documento:")
+                            print(error)
 
                 input("\nPresiona ENTER para continuar...")
 
