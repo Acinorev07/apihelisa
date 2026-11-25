@@ -76,9 +76,14 @@ def menu_helisa():
 
                 try:
 
-                    limpiar_pantalla()
+                        limpiar_pantalla()
 
-                    insertar_documento()
+                        response = insertar_documento()
+                        
+                        print(response)
+                        
+                        
+                  
 
                 except Exception as e:
                     print(f"\nError en la ejecución: {str(e)}")

@@ -166,6 +166,8 @@ def obtener_movimientos_debito(
     doc_id
 ):
     movimientos = []
+    
+    accounting_class = 0
 
     fecha_factura = convertir_fecha(
         factura.get("Fecha_factura")
@@ -270,7 +272,7 @@ def obtener_movimientos_debito(
                     "costCenter": "",
                     "concept": concepto,
                     "accountingClass": {
-                        "value": 0
+                        "value": accounting_class
                     },
                     "value": round(valor, 2),
                     "idThirdParty": doc_id,
@@ -291,23 +293,19 @@ def obtener_movimientos_debito(
                 movimientos.append(
                 {
                     "accountingClass": {
-                            "value": 0
+                            "value": accounting_class
                         },
                     "nature": {
                     "tag": "D"
                     },
                     "matchCode": 1,
-                    "costCenter": "",
                     "concept": concepto,
                     "value": round(valor, 2),
                     "idThirdParty": doc_id,
                     "account": cuenta_debito,
                     "userCode": 1,
                     "taxBase": 0,
-                    "businessCode": 1,
-                    "bankAccount": "6020563236-0",
-                    "bankCheck": 0,
-                    "bankOperation": "TR",
+                    "bankAccount": "02-036-533244",
                     "bankCheckDate": {
                     "day": fecha_factura.day,
                     "month": fecha_factura.month,
@@ -315,7 +313,19 @@ def obtener_movimientos_debito(
                     }
                 }
             )
-
+#  "transactions": [
+#       {
+#         "account": cuenta_debito,
+#         "accountingClass": { "value": "2" },
+#         "concept": "FED31 - Tarjeta de crédito american express",
+#         "idThirdParty":doc_id,
+#         "matchCode": "1",
+#         "nature": { "tag": "D" },
+#         "taxBase": "0",
+#         "userCode": "1",
+#         "value": "392000",
+#         "bankAccount": "3020617527"
+#       },
 
 
 
@@ -338,6 +348,7 @@ def generar_partida_doble(facturas):
     contabilidad = cargar_archivo(
         "clasificacion_contable_productos.json"
     )
+    accounting_class = 0
 
     producto_cuenta = contabilidad["producto-cuenta"]
 
@@ -538,7 +549,7 @@ def generar_partida_doble(facturas):
                             "costCenter": centro_costo,
                             "concept": concepto,
                             "accountingClass": {
-                                "value": 0
+                                "value": accounting_class
                             },
                             "value": valor_servicio_contabilizado,
                             "idThirdParty": doc_id,
@@ -557,7 +568,7 @@ def generar_partida_doble(facturas):
                             "costCenter": centro_costo,
                             "concept": concepto,
                             "accountingClass": {
-                                "value": 0
+                                "value": accounting_class
                             },
                             "value": valor_impuesto_contabilizado,
                             "idThirdParty": doc_id,
@@ -599,7 +610,7 @@ def generar_partida_doble(facturas):
                         "costCenter": centro_costo,
                         "concept": concepto,
                         "accountingClass": {
-                            "value": 0
+                            "value": accounting_class
                         },
                         "value": descuento_contabilizado,
                         "idThirdParty": doc_id,
@@ -618,7 +629,7 @@ def generar_partida_doble(facturas):
                         "costCenter": centro_costo,
                         "concept": concepto,
                         "accountingClass": {
-                            "value": 0
+                            "value": accounting_class
                         },
                         "value": valor_credito,
                         "idThirdParty": doc_id,

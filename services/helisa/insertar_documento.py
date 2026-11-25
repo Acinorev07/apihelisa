@@ -113,6 +113,125 @@ def insertar_documento(documento):
     #         ]
     #     }
     # }
+    
+    documento = {
+        
+        "document": {
+            "date": {
+                "day": 21,
+                "month": 11,
+                "year": 2026
+            },
+            "document": {
+                "type": "NIED",
+                "number": "00003451"
+            },
+            "transactions": [
+                {
+                    "nature": {
+                        "tag": "D"
+                    },
+                    "costCenter": "",
+                    "concept": "KAREN MARGARITA CARDONA MORENO-25950-SO2",
+                    "accountingClass": {
+                        "value": 0
+                    },
+                    "value": 52000.0,
+                    "idThirdParty": "1099741540",
+                    "account": "110505",
+                    "userCode": 1,
+                    "taxBase": 0
+                },
+                {
+                    "nature": {
+                        "tag": "C"
+                    },
+                    "costCenter": "060302",
+                    "concept": "KAREN MARGARITA CARDONA MORENO-25950-SO2",
+                    "accountingClass": {
+                        "value": 0
+                    },
+                    "value": 52000.0,
+                    "idThirdParty": "1099741540",
+                    "account": "41600502",
+                    "userCode": 1,
+                    "taxBase": 0
+                },
+                {
+                    "accountingClass": {
+                        "value": 0
+                    },
+                    "nature": {
+                        "tag": "D"
+                    },
+                    "matchCode": 1,
+                    "concept": "KAREN JULIANA HERNANDEZ SERRANO-25949-F3",
+                    "value": 35000.0,
+                    "idThirdParty": "1095803707",
+                    "account": "11201001",
+                    "userCode": 1,
+                    "taxBase": 0,
+                    "bankAccount": "02-036-533244",
+                    "bankCheckDate": {
+                        "day": 21,
+                        "month": 11,
+                        "year": 2026
+                    }
+                },
+                {
+                    "nature": {
+                        "tag": "C"
+                    },
+                    "costCenter": "060203",
+                    "concept": "KAREN JULIANA HERNANDEZ SERRANO-25949-F3",
+                    "accountingClass": {
+                        "value": 0
+                    },
+                    "value": 35000.0,
+                    "idThirdParty": "1095803707",
+                    "account": "41600516",
+                    "userCode": 1,
+                    "taxBase": 0
+                },
+                {
+                    "accountingClass": {
+                        "value": 0
+                    },
+                    "nature": {
+                        "tag": "D"
+                    },
+                    "matchCode": 1,
+                    "concept": "MARCELL JULIAN RUEDA ACUÑA-25948-C2",
+                    "value": 35000.0,
+                    "idThirdParty": "1096539034",
+                    "account": "11201001",
+                    "userCode": 1,
+                    "taxBase": 0,
+                    "bankAccount": "02-036-533244",
+                    "bankCheckDate": {
+                        "day": 21,
+                        "month": 11,
+                        "year": 2026
+                    }
+                },
+                {
+                    "nature": {
+                        "tag": "C"
+                    },
+                    "costCenter": "061002",
+                    "concept": "MARCELL JULIAN RUEDA ACUÑA-25948-C2",
+                    "accountingClass": {
+                        "value": 0
+                    },
+                    "value": 35000.0,
+                    "idThirdParty": "1096539034",
+                    "account": "41600516",
+                    "userCode": 1,
+                    "taxBase": 0
+                }
+            ]
+        }
+    }
 
     # --------------------------------
     # Convertir Python → JSON
@@ -134,6 +253,8 @@ def insertar_documento(documento):
         url,
         json_data
     )
+    
+    
 
     if response is not None:
 
@@ -142,3 +263,5 @@ def insertar_documento(documento):
         print("Respuesta:")
 
         print(response.text)
+        
+    return response

@@ -363,18 +363,180 @@ def obtener_recibo_pago_factura(id_pago):
     return response.json()
 
 
+from hooks.configuracion_APIs import obtener_url
+import json
+from api.helisa.route import POST
+
+def insertar_documento():
+    print("\n===== INSERTAR DOCUMENTO =====")
+    
+    url = obtener_url(
+            "helisa",
+            "document"
+        )
+    
+    accounting_class = int(0)
+
+    documento = {
+        
+        "document": {
+            "date": {
+                "day": 21,
+                "month": 11,
+                "year": 2026
+            },
+            "document": {
+                "type": "NIED",
+                "number": "00003451"
+            },
+            "transactions": [
+                {
+                    "nature": {
+                        "tag": "D"
+                    },
+                    # "matchCode":1,
+                    "costCenter": "",
+                    "concept": "KAREN MARGARITA CARDONA MORENO-25950-SO2",
+                    "accountingClass": {
+                        "value": accounting_class
+                    },
+                    "value": 52000.0,
+                    "idThirdParty": "1099741540",
+                    "account": "110505",
+                    "userCode": 1,
+                    "taxBase": 0
+                },
+                {
+                    "nature": {
+                        "tag": "C"
+                    },
+                    # "matchCode":2,
+                    "costCenter": "060302",
+                    "concept": "KAREN MARGARITA CARDONA MORENO-25950-SO2",
+                    "accountingClass": {
+                        "value": accounting_class
+                    },
+                    "value": 52000.0,
+                    "idThirdParty": "1099741540",
+                    "account": "41600502",
+                    "userCode": 1,
+                    "taxBase": 0
+                },
+                {
+                    "accountingClass": {
+                        "value": accounting_class
+                    },
+                    "nature": {
+                        "tag": "D"
+                    },
+                    # "matchCode": 1,
+                    "concept": "KAREN JULIANA HERNANDEZ SERRANO-25949-F3",
+                    "value": 35000.0,
+                    "idThirdParty": "1095803707",
+                    "account": "11201001",
+                    "userCode": 1,
+                    "taxBase": 0,
+                    "bankAccount": "02-036-533244",
+                },
+                {
+                    "nature": {
+                        "tag": "C"
+                    },
+                    # "matchCode":2,
+                    "costCenter": "060203",
+                    "concept": "KAREN JULIANA HERNANDEZ SERRANO-25949-F3",
+                    "accountingClass": {
+                        "value": accounting_class
+                    },
+                    "value": 35000.0,
+                    "idThirdParty": "1095803707",
+                    "account": "41600516",
+                    "userCode": 1,
+                    "taxBase": 0
+                },
+                {
+                    "accountingClass": {
+                        "value": accounting_class
+                    },
+                    "nature": {
+                        "tag": "D"
+                    },
+                    # "matchCode": 1,
+                    "concept": "MARCELL JULIAN RUEDA ACUÑA-25948-C2",
+                    "value": 35000.0,
+                    "idThirdParty": "1096539034",
+                    "account": "11201001",
+                    "userCode": 1,
+                    "taxBase": 0,
+                    "bankAccount": "02-036-533244",
+                },
+                {
+                    "nature": {
+                        "tag": "C"
+                    },
+                    # "matchCode":2,
+                    "costCenter": "061002",
+                    "concept": "MARCELL JULIAN RUEDA ACUÑA-25948-C2",
+                    "accountingClass": {
+                        "value": accounting_class
+                    },
+                    "value": 35000.0,
+                    "idThirdParty": "1096539034",
+                    "account": "41600516",
+                    "userCode": 1,
+                    "taxBase": 0
+                }
+            ]
+        }
+    }
+
+    # --------------------------------
+    # Convertir Python → JSON
+    # --------------------------------
+
+    json_data = json.dumps(
+        documento,
+        separators=(",", ":")
+    )
+
+    print("\nJSON que se enviará:")
+    print(json_data)
+
+    # --------------------------------
+    # Enviar a Helisa
+    # --------------------------------
+
+    response = POST(
+        url,
+        json_data
+    )
+    
+    
+
+    if response is not None:
+
+        print("\nCódigo:", response.status_code)
+
+        print("Respuesta:")
+
+        print(response.text)
+        
+    return response
+
 if __name__ == "__main__":
-    # generar_documento_helisa()
-    id_pago = 54909
+    insertar_documento()
+    # # generar_documento_helisa()
+    # id_pago = 54909
 
-    respuesta = obtener_recibo_pago_factura(id_pago)
+    # respuesta = obtener_recibo_pago_factura(id_pago)
 
 
-    print(json.dumps(
-        respuesta,
-        indent=4,
-        ensure_ascii=False
-    ))
+    # print(json.dumps(
+    #     respuesta,
+    #     indent=4,
+    #     ensure_ascii=False
+    # ))
+    
 
 
 
