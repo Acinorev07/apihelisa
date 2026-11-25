@@ -1,0 +1,153 @@
+{
+  "document": {
+    "date": {
+      "day": "01",
+      "month": "07",
+      "year": "2023"
+    },
+    "document": {
+      "type": "FV",
+      "number": "999903"
+    },
+    "transactions": [
+      {
+        
+        "accountingClass": {
+          "value": "0"
+        },
+        "nature": {
+          "tag": "C"
+        },
+        "matchCode": "1",
+        "costCenter": "13PP08",
+        "concept": "Venta Segun Factura WCON 999903",
+        "value": "1000000",
+        "idThirdParty": "1031555400",
+        "account": "41350505",
+        "userCode": "1",
+        "taxBase": "1000000"
+      },
+      {
+        "accountingClass": {
+          "value": "0"
+        },
+        "nature": {
+          "tag": "C"
+        },
+        "matchCode": "2",
+        "costCenter": "13PP08",
+        "concept": "Iva Generado 19%",
+        "value": "190000",
+        "idThirdParty": "1031555400",
+        "account": "240805",
+        "userCode": "1",
+        "taxBase": "1000000"
+      },
+      {
+        "accountingClass": {
+          "value": "0"
+        },
+        "nature": {
+          "tag": "D"
+        },
+        "matchCode": "3",
+        "costCenter": "13PP08",
+        "concept": "Rete Fuente 2.5%",
+        "value": "25000",
+        "idThirdParty": "1031555400",
+        "account": "13551525",
+        "userCode": "1",
+        "taxBase": "1000000"
+      },
+      {
+        "accountingClass": {
+          "value": "0"
+        },
+        "nature": {
+          "tag": "D"
+        },
+        "matchCode": "4",
+        "costCenter": "13PP08",
+        "concept": "Cuenta Por Cobrar a Clientes",
+        "value": "1165000",
+        "idThirdParty": "1031555400",
+        "account": "13050505",
+        "userCode": "1",
+        "taxBase": "1165000",
+        "accountingTransactionClient": {
+          "clientCode": 72232,
+          "idVendor": "43268147",
+          "paymentForm": 10,
+          "affectDocument": {
+            "type": "WCON",
+            "number": "999903"
+          }
+        }
+      },
+      {
+        "accountingClass": {
+          "value": "1"
+        },
+        "nature": {
+          "tag": "C"
+        },
+        "matchCode": "1",
+        "costCenter": "13PP08",
+        "concept": "Venta Segun Factura WCON 999903",
+        "value": "1000000",
+        "idThirdParty": "1031555400",
+        "account": "41350505",
+        "userCode": "1",
+        "taxBase": "1000000"
+      },
+      {
+        "accountingClass": {
+          "value": "1"
+        },
+        "nature": {
+          "tag": "C"
+        },
+        "matchCode": "2",
+        "costCenter": "13PP08",
+        "concept": "Iva Generado 19%",
+        "value": "190000",
+        "idThirdParty": "1031555400",
+        "account": "240805",
+        "userCode": "1",
+        "taxBase": "1000000"
+      },
+      {
+        "accountingClass": {
+          "value": "1"
+        },
+        "nature": {
+          "tag": "D"
+        },
+        "matchCode": "3",
+        "costCenter": "13PP08",
+        "concept": "Rete Fuente 2.5",
+        "value": "25000",
+        "idThirdParty": "1031555400",
+        "account": "13551525",
+        "userCode": "1",
+        "taxBase": "1000000"
+      },
+      {
+        "accountingClass": {
+          "value": "1"
+        },
+        "nature": {
+          "tag": "D"
+        },
+        "matchCode": "4",
+        "costCenter": "13PP08",
+        "concept": "Cuenta Por Cobrar A Clientes",
+        "value": "1165000",
+        "idThirdParty": "1031555400",
+        "account": "13050505",
+        "userCode": "1",
+        "taxBase": "1165000"
+      }
+    ]
+  }
+}

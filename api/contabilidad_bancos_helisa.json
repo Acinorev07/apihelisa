@@ -1,0 +1,69 @@
+{
+  "document": {
+    "date": {
+      "day": "30",
+      "month": "07",
+      "year": "2026"
+    },
+    "document": {
+      "type": "CE",
+      "number": "888803"
+    },
+    "transactions": [
+      {
+        "accountingClass": {
+          "value": 0
+        },
+        "nature": {
+          "tag": "C"
+        },
+        "matchCode": 1,
+        "costCenter": "0101",
+        "concept": "Transferencia bancaria pago proveedor",
+        "value": 1165000,
+        "idThirdParty": "1031555400",
+        "account": "11100505",
+        "userCode": 1,
+        "taxBase": 0,
+        "businessCode": 1,
+        "bankAccount": "042234677-0",
+        "bankCheck": 0,
+        "bankOperation": "TR",
+        "bankCheckDate": {
+          "day": "30",
+          "month": "07",
+          "year": "2026"
+        }
+      },
+      {
+        "accountingClass": {
+          "value": 0
+        },
+        "nature": {
+          "tag": "D"
+        },
+        "matchCode": 1,
+        "costCenter": "0101",
+        "concept": "Pago Factura FC-888803",
+        "value": 1165000,
+        "idThirdParty": "1031555400",
+        "account": "22050505",
+        "userCode": 1,
+        "taxBase": 0,
+        "accountingTransactionSupplier": {
+          "supplierCode": 36091,
+          "affectDocument": {
+            "type": "FC",
+            "number": "888803"
+          },
+          "affectDate": {
+            "day": "01",
+            "month": "07",
+            "year": "2026"
+          },
+          "affectFee": 1
+        }
+      }
+    ]
+  }
+}
