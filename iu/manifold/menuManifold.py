@@ -76,8 +76,8 @@ def menu_manifold():
                     clasificacion_sin_recibo = None
 
                     params = {
-                        "fecha_inicio": "2026-11-21",
-                        "fecha_fin": "2026-11-21",
+                        "fecha_inicio": "2026-11-25",
+                        "fecha_fin": "2026-11-25",
                         "codigo_persona": "",
                         "consecutivo_tercero": "",
                         "codigo_producto": "",

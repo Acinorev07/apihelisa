@@ -375,7 +375,7 @@ def insertar_documento():
             "document"
         )
     
-    accounting_class = int(0)
+    accounting_class = "2"
 
     documento = {
         
@@ -387,7 +387,7 @@ def insertar_documento():
             },
             "document": {
                 "type": "NIED",
-                "number": "00003451"
+                "number": "00003450"
             },
             "transactions": [
                 {

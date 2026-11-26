@@ -2,17 +2,15 @@
 from datetime import datetime
 from calendar import monthrange
 import unicodedata
-
 from services.helisa.obtener_dcto_helisa import obtener_dcto_helisa
 from services.q10.obtener_recibo_pago_factura import (
     obtener_recibo_pago_factura
 )
 from services.q10.obtener_tercero import obtener_tercero
 from services.q10.obtener_estudiante import obtener_estudiante
-
 from hooks.validarDi import validar_documento_tercero
 from hooks.obtener_archivo_json import cargar_archivo
-
+import copy
 
 # ---------------------------------------------------------
 # FUNCIONES AUXILIARES
@@ -298,7 +296,6 @@ def obtener_movimientos_debito(
                     "nature": {
                     "tag": "D"
                     },
-                    "matchCode": 1,
                     "concept": concepto,
                     "value": round(valor, 2),
                     "idThirdParty": doc_id,
@@ -313,19 +310,32 @@ def obtener_movimientos_debito(
                     }
                 }
             )
-#  "transactions": [
-#       {
-#         "account": cuenta_debito,
-#         "accountingClass": { "value": "2" },
-#         "concept": "FED31 - Tarjeta de crédito american express",
-#         "idThirdParty":doc_id,
-#         "matchCode": "1",
-#         "nature": { "tag": "D" },
-#         "taxBase": "0",
-#         "userCode": "1",
-#         "value": "392000",
-#         "bankAccount": "3020617527"
-#       },
+
+
+            elif nombre_forma.strip() == "tarjeta debito":
+                # Si la cuenta de pago es Bancaria, se agrega este asiento a los movimientos
+                movimientos.append(
+                {
+                    "accountingClass": {
+                            "value": accounting_class
+                        },
+                    "nature": {
+                    "tag": "D"
+                    },
+                    "concept": concepto,
+                    "value": round(valor, 2),
+                    "idThirdParty": doc_id,
+                    "account": "11201002",
+                    "userCode": 1,
+                    "taxBase": 0,
+                    "bankAccount": "02-036-533244",
+                    "bankCheckDate": {
+                    "day": fecha_factura.day,
+                    "month": fecha_factura.month,
+                    "year": fecha_factura.year
+                    }
+                }
+            )              
 
 
 
@@ -781,7 +791,26 @@ def generar_documento_helisa(facturas):
             f"Créditos: {resultado['total_creditos']}."
         )
 
-    # 5. Construir documento.
+    # 5. Duplicar movimientos para Local y NIIF.
+
+    transactions_local = []
+    transactions_niif = []
+
+    for movimiento in resultado["transactions"]:
+
+        # Copia para contabilidad Local.
+        movimiento_local = copy.deepcopy(movimiento)
+        movimiento_local["accountingClass"] = {"value": "0"}
+        transactions_local.append(movimiento_local)
+
+        # Copia para contabilidad NIIF.
+        movimiento_niif = copy.deepcopy(movimiento)
+        movimiento_niif["accountingClass"] = {"value": "1"}
+        transactions_niif.append(movimiento_niif)
+
+    # Primero Local y después NIIF.
+    transactions_finales = transactions_local + transactions_niif
+
     documento = {
         "document": {
             "date": {
@@ -793,7 +822,7 @@ def generar_documento_helisa(facturas):
                 "type": tipo_documento,
                 "number": siguiente_documento
             },
-            "transactions": resultado["transactions"]
+            "transactions": transactions_finales
         }
     }
 
@@ -801,7 +830,9 @@ def generar_documento_helisa(facturas):
     print("Consecutivo:", siguiente_documento)
     print("Fecha:", fecha_documento)
     print("Facturas procesadas:", len(facturas))
-    print("Movimientos:", len(resultado["transactions"]))
+    print("Movimientos:", len(transactions_finales))
+    print("Movimientos Local:", len(transactions_local))
+    print("Movimientos NIIF:", len(transactions_niif))
     print("Total débitos:", resultado["total_debitos"])
     print("Total créditos:", resultado["total_creditos"])
 
