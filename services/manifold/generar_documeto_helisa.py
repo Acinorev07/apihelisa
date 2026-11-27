@@ -259,7 +259,7 @@ def obtener_movimientos_debito(
             if valor <= 0:
                 continue
 
-            if nombre_forma == "efectivo":
+            if nombre_forma == "efectivo" or nombre_forma.strip() == "fondo voluntariado":
                 cuenta_debito = "110505"
 
                 # Si la forma de pago es en Efectivo, agrega este asiento a los movimientos
@@ -312,7 +312,7 @@ def obtener_movimientos_debito(
             )
 
 
-            elif nombre_forma.strip() == "tarjeta debito":
+            elif nombre_forma.strip() == "tarjeta debito" or nombre_forma.strip() =="tarjeta de credito":
                 # Si la cuenta de pago es Bancaria, se agrega este asiento a los movimientos
                 movimientos.append(
                 {

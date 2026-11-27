@@ -524,18 +524,18 @@ def insertar_documento():
     return response
 
 if __name__ == "__main__":
-    insertar_documento()
+    # insertar_documento()
     # # generar_documento_helisa()
-    # id_pago = 54909
+    id_pago = 55008
 
-    # respuesta = obtener_recibo_pago_factura(id_pago)
+    respuesta = obtener_recibo_pago_factura(id_pago)
 
 
-    # print(json.dumps(
-    #     respuesta,
-    #     indent=4,
-    #     ensure_ascii=False
-    # ))
+    print(json.dumps(
+        respuesta,
+        indent=4,
+        ensure_ascii=False
+    ))
     
 
 

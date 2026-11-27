@@ -1,0 +1,37 @@
+no amigo, solo necesito dejar el proyecto como el ultimo commit que tengo en github, por ahora el proyecto es pequeño, y solo trabajo desde la casa, en el trabajo solo muestro lo que he echo, por ahora no me interesa salvar nada que he echo en el trabajo, cuando sea asi, yo te pregunto como, por ahora no, gracias
+¡Ahhh, entendido, amigo mío! 😄 Disculpa por complicarte el proceso. Vamos a hacerlo sencillo: dejar tu PC de trabajo exactamente como está el último commit de GitHub, sin guardar ni recuperar los cambios que hiciste en el trabajo.
+
+Desde PowerShell, ubicado en C:\Users\AUXCONTABLE\Desktop\apihelisa, ejecuta estos tres comandos en orden.
+
+1. Actualizar la información de GitHub
+
+git fetch origin
+
+2. Igualar tu proyecto local con GitHub
+
+git reset --hard origin/main
+
+Este comando descarta los cambios locales de los archivos que Git ya controla y deja la rama main en el commit remoto.
+
+3. Eliminar los archivos nuevos que no están en GitHub
+
+git clean -fd
+
+Esto eliminará archivos y carpetas no rastreados, incluido hooks/validar_tercero.py si continúa sin estar agregado a Git. No elimina los archivos ignorados por Git, como un .env correctamente excluido.
+
+Comprobar que quedó listo
+Ejecuta:
+
+git status -sb
+git log -1 --oneline
+
+Deberías ver algo parecido a esto:
+
+## main...origin/main
+98ef03d Agregamos la API de Q10...
+El mensaje exacto del commit será el que figure en GitHub. Lo importante es que main quede sincronizada con origin/main y que no aparezcan cambios pendientes.
+
+Importante: los comandos reset --hard y clean -fd descartan cambios locales de forma potencialmente irreversible. En tu caso, como me acabas de confirmar que no necesitas conservarlos, son los comandos adecuados.
+
+¡Listo, compañero! Así podrás mostrar en el trabajo el proyecto que tienes en GitHub y seguir desarrollándolo tranquilamente desde casa. 🤝
+
